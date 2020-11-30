@@ -33907,9 +33907,16 @@ function ContextProvider({
   const [allFeed, setAllFeed] = (0, _react.useState)([]);
   const [username, setUsername] = (0, _react.useState)("Noeline Marie");
   const [profile, setProfile] = (0, _react.useState)("https://iili.io/Fwvaat.jpg");
+  const [newComment, setNewComment] = (0, _react.useState)("");
   (0, _react.useEffect)(() => {
     setAllFeed(_feedPost.default);
   }, []);
+
+  function AddNewComment(e) {
+    e.preventDefault();
+    const form = e.target;
+    setNewComment(form.comment.value);
+  }
 
   function submitPost(e) {
     e.preventDefault();
@@ -33934,7 +33941,9 @@ function ContextProvider({
       username,
       profile,
       allFeed,
-      submitPost
+      submitPost,
+      newComment,
+      AddNewComment
     }
   }, children);
 }
@@ -35947,7 +35956,9 @@ function Feed() {
   const {
     allFeed,
     username,
-    profile
+    profile,
+    newComment,
+    AddNewComment
   } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, allFeed.map(feed => {
     const postingDate = new Date(feed.date);
@@ -35975,9 +35986,12 @@ function Feed() {
       className: "profile",
       src: profile,
       alt: username
-    }), /*#__PURE__*/_react.default.createElement("span", null, username)), /*#__PURE__*/_react.default.createElement("span", null, replyingDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.replyMessage))), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("input", {
+    }), /*#__PURE__*/_react.default.createElement("span", null, username)), /*#__PURE__*/_react.default.createElement("span", null, replyingDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.replyMessage)), /*#__PURE__*/_react.default.createElement("li", null, newComment)), /*#__PURE__*/_react.default.createElement("form", {
+      onSubmit: AddNewComment
+    }, /*#__PURE__*/_react.default.createElement("input", {
       type: "text",
-      placeholder: "Add a comment..."
+      placeholder: "Add a comment...",
+      name: "comment"
     }), /*#__PURE__*/_react.default.createElement("button", {
       "aria-label": "submit your comment"
     }, "Post")));

@@ -7,10 +7,17 @@ function ContextProvider({children}) {
     const [allFeed, setAllFeed] = useState([]);
     const [username, setUsername] = useState("Noeline Marie");
     const [profile, setProfile] = useState("https://iili.io/Fwvaat.jpg");
+    const [newComment, setNewComment] = useState("");
 
     useEffect(() => {
         setAllFeed(feedPost);
-    }, [])
+    }, []);
+
+    function AddNewComment(e) {
+        e.preventDefault();
+        const form = e.target;
+        setNewComment(form.comment.value)
+    }
 
     function submitPost(e) {
         e.preventDefault();
@@ -31,7 +38,16 @@ function ContextProvider({children}) {
     }
 
     return (
-        <Context.Provider value={{ username, profile, allFeed, submitPost }}>
+        <Context.Provider 
+            value={{ 
+                username, 
+                profile, 
+                allFeed, 
+                submitPost, 
+                newComment, 
+                AddNewComment, 
+            }}
+        >
             {children}
         </Context.Provider>
     )

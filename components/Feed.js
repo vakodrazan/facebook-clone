@@ -31,7 +31,7 @@ const Heading = styled.div`
     }
 `
 function Feed() {
-    const { allFeed, username, profile } = useContext(Context);
+    const { allFeed, username, profile, newComment, AddNewComment } = useContext(Context);
     return (
         <ArticleStyle>
             {allFeed.map(feed => {
@@ -84,9 +84,17 @@ function Feed() {
                                     <p>{feed.replyMessage}</p>
                                 </li>
                             }
+
+                            <li>
+                                {newComment}
+                            </li>
                         </ul>
-                        <form>
-                            <input type="text" placeholder="Add a comment..." />
+                        <form onSubmit={AddNewComment}>
+                            <input 
+                                type="text" 
+                                placeholder="Add a comment..." 
+                                name="comment"
+                            />
                             <button aria-label="submit your comment">Post</button>
                         </form>
                     </section>
