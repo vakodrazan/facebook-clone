@@ -1,10 +1,14 @@
 import React from 'react';
-import Header from '../components/Header';
-
+import { Route, Switch } from 'react-router-dom';
+import Homepage from '../components/Homepage';
 function App() {
     return (
         <div>
-            <Header />
+            <Switch>
+                <Route exact path="/">
+                    <Homepage />
+                </Route>
+            </Switch>
         </div>
     )
 }
