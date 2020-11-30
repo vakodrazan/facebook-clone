@@ -9,8 +9,22 @@ function ContextProvider({children}) {
     useEffect(() => {
         setAllFeed(feedPost);
     }, [])
+
+    function submitPost(e) {
+        e.preventDefault();
+        const form = e.target;
+        const newPost = {
+            id: Date.now(),
+            date: Date.now(),
+            description: form.addText.value,
+            photo: form.addUrl.value,
+            like: 0,
+        }
+        setAllFeed([...allFeed, newPost])
+    }
+
     return (
-        <Context.Provider value={{ allFeed }}>
+        <Context.Provider value={{ allFeed, submitPost }}>
             {children}
         </Context.Provider>
     )

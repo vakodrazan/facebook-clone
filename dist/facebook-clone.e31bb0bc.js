@@ -33853,7 +33853,87 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"components/AddPost.js":[function(require,module,exports) {
+},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"feedPost.json":[function(require,module,exports) {
+module.exports = [{
+  "id": 159722431000023,
+  "userName": "Noeline Marie",
+  "profilePhoto": "https://iili.io/Fwvaat.jpg",
+  "date": 1597224310000,
+  "description": "Today is my birthday. Anyone want to join me with my party.",
+  "photo": "https://iili.io/FwkT1S.jpg",
+  "like": 20,
+  "commenterUsername": "Natacha Volana",
+  "commenter": "https://onja.org/wp-content/uploads/2019/03/volanaNatacha@2x-368x268.jpg",
+  "comment": "Happy birthday",
+  "commentDate": 1597224610000,
+  "replyMessage": "Thank you sis",
+  "replyDate": 1597225210000
+}, {
+  "id": 160379161400084,
+  "userName": "Noeline Marie",
+  "profilePhoto": "https://iili.io/Fwvaat.jpg",
+  "date": 1603791614000,
+  "description": "Thanks to my sister for making my hair like this. I love it so much.",
+  "photo": "https://i.ibb.co/d6hBs7T/IMG-20200524-181649-664.jpg",
+  "like": 20,
+  "commenter": "https://onja.org/wp-content/uploads/2019/08/Clopedia@2x-368x268.jpg",
+  "commenterUsername": "Clopedia Nomenjanahary",
+  "comment": "Wow, Nice",
+  "commentDate": 1603809614000,
+  "replyMessage": "Thanks",
+  "replyDate": 1603870814000
+}];
+},{}],"pages/Context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ContextProvider = ContextProvider;
+exports.Context = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _feedPost = _interopRequireDefault(require("../feedPost.json"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Context = (0, _react.createContext)();
+exports.Context = Context;
+
+function ContextProvider({
+  children
+}) {
+  const [allFeed, setAllFeed] = (0, _react.useState)([]);
+  (0, _react.useEffect)(() => {
+    setAllFeed(_feedPost.default);
+  }, []);
+
+  function submitPost(e) {
+    e.preventDefault();
+    const form = e.target;
+    const newPost = {
+      id: Date.now(),
+      date: Date.now(),
+      description: form.addText.value,
+      photo: form.addUrl.value,
+      like: 0
+    };
+    setAllFeed([...allFeed, newPost]);
+  }
+
+  return /*#__PURE__*/_react.default.createElement(Context.Provider, {
+    value: {
+      allFeed,
+      submitPost
+    }
+  }, children);
+}
+},{"react":"node_modules/react/index.js","../feedPost.json":"feedPost.json"}],"components/AddPost.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33861,23 +33941,36 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Context = require("../pages/Context");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function AddPost() {
-  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "New post:"), /*#__PURE__*/_react.default.createElement("textarea", {
+  const {
+    submitPost
+  } = (0, _react.useContext)(_Context.Context);
+  return /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: submitPost
+  }, /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "New post:"), /*#__PURE__*/_react.default.createElement("textarea", {
     rows: "4",
     type: "text",
-    placeholder: "Say what\u2019s on your mind..."
+    placeholder: "Say what\u2019s on your mind...",
+    name: "addText"
   })), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Picture url: "), /*#__PURE__*/_react.default.createElement("input", {
-    type: "url"
-  })), /*#__PURE__*/_react.default.createElement("button", null, "Post"));
+    type: "url",
+    name: "addUrl"
+  })), /*#__PURE__*/_react.default.createElement("button", {
+    "aria-label": "Commit your post"
+  }, "Post"));
 }
 
 var _default = AddPost;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../pages/Context":"pages/Context.js"}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
 //
 
 module.exports = function shallowEqual(objA, objB, compare, compareContext) {
@@ -35798,72 +35891,7 @@ exports.ServerStyleSheet = Ue;
 "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "production" !== "development" && "test" !== "development" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, 1 === window["__styled-components-init__"] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
 var _default = qe;
 exports.default = _default;
-},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"feedPost.json":[function(require,module,exports) {
-module.exports = [{
-  "id": 159722431000023,
-  "userName": "Noeline Marie",
-  "profilePhoto": "https://iili.io/Fwvaat.jpg",
-  "date": 1597224310000,
-  "description": "Today is my birthday. Anyone want to join me with my party.",
-  "photo": "https://iili.io/FwkT1S.jpg",
-  "like": 20,
-  "commenterUsername": "Natacha Volana",
-  "commenter": "https://onja.org/wp-content/uploads/2019/03/volanaNatacha@2x-368x268.jpg",
-  "comment": "Happy birthday",
-  "commentDate": 1597224610000,
-  "replyMessage": "Thank you sis",
-  "replyDate": 1597225210000
-}, {
-  "id": 160379161400084,
-  "userName": "Noeline Marie",
-  "profilePhoto": "https://iili.io/Fwvaat.jpg",
-  "date": 1603791614000,
-  "description": "Thanks to my sister for making my hair like this. I love it so much.",
-  "photo": "https://i.ibb.co/d6hBs7T/IMG-20200524-181649-664.jpg",
-  "like": 20,
-  "commenter": "https://onja.org/wp-content/uploads/2019/08/Clopedia@2x-368x268.jpg",
-  "commenterUsername": "Clopedia Nomenjanahary",
-  "comment": "Wow, Nice",
-  "commentDate": 1603809614000,
-  "replyMessage": "Thanks",
-  "replyDate": 1603870814000
-}];
-},{}],"pages/Context.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ContextProvider = ContextProvider;
-exports.Context = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _feedPost = _interopRequireDefault(require("../feedPost.json"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-const Context = (0, _react.createContext)();
-exports.Context = Context;
-
-function ContextProvider({
-  children
-}) {
-  const [allFeed, setAllFeed] = (0, _react.useState)([]);
-  (0, _react.useEffect)(() => {
-    setAllFeed(_feedPost.default);
-  }, []);
-  return /*#__PURE__*/_react.default.createElement(Context.Provider, {
-    value: {
-      allFeed
-    }
-  }, children);
-}
-},{"react":"node_modules/react/index.js","../feedPost.json":"feedPost.json"}],"components/Feed.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"components/Feed.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
