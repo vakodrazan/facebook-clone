@@ -48,7 +48,9 @@ function Header() {
                         Feed
                     </Link>
                 </li>
-                <li>Add post</li>
+                <li>
+                    <Link to="/addPost">Add post</Link>
+                </li>
                 <li className="userName">
                     <span>Noeline Marie</span>
                     <img className="profile" src="https://iili.io/Fwvaat.jpg" alt="Noeline Marie" />

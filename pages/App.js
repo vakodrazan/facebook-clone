@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import AddPost from '../components/AddPost';
 import Feed from '../components/Feed';
 import Header from '../components/Header';
-import Homepage from '../components/Homepage';
 function App() {
     return (
         <div>
@@ -10,6 +10,9 @@ function App() {
             <Switch>
                 <Route exact path="/">
                     <Feed />
+                </Route>
+                <Route path="/addPost">
+                    <AddPost />
                 </Route>
             </Switch>
         </div>
