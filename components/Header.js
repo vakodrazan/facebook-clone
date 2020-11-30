@@ -51,9 +51,11 @@ function Header() {
                 <li>
                     <Link to="/addPost">Add post</Link>
                 </li>
-                <li className="userName">
-                    <span>Noeline Marie</span>
-                    <img className="profile" src="https://iili.io/Fwvaat.jpg" alt="Noeline Marie" />
+                <li>
+                    <Link to="/options" className="userName">
+                        <span>Noeline Marie</span>
+                        <img className="profile" src="https://iili.io/Fwvaat.jpg" alt="Noeline Marie" />
+                    </Link>
                 </li>
             </ul>
         </HeaderStyle>

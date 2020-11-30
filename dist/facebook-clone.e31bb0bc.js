@@ -36012,18 +36012,45 @@ function Header() {
     to: "/"
   }, "Feed")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/addPost"
-  }, "Add post")), /*#__PURE__*/_react.default.createElement("li", {
+  }, "Add post")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/options",
     className: "userName"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Noeline Marie"), /*#__PURE__*/_react.default.createElement("img", {
     className: "profile",
     src: "https://iili.io/Fwvaat.jpg",
     alt: "Noeline Marie"
-  }))));
+  })))));
 }
 
 var _default = Header;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"pages/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/Options.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Options() {
+  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("p", null, "Options:"), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Username: "), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    placeholder: "Type your username here"
+  })), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Profile picture: "), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    placeholder: "Paste a URL here"
+  })), /*#__PURE__*/_react.default.createElement("button", {
+    "aria-label": "save you options"
+  }, "Save"));
+}
+
+var _default = Options;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"pages/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36041,6 +36068,8 @@ var _Feed = _interopRequireDefault(require("../components/Feed"));
 
 var _Header = _interopRequireDefault(require("../components/Header"));
 
+var _Options = _interopRequireDefault(require("../components/Options"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
@@ -36049,12 +36078,14 @@ function App() {
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Feed.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/addPost"
-  }, /*#__PURE__*/_react.default.createElement(_AddPost.default, null))));
+  }, /*#__PURE__*/_react.default.createElement(_AddPost.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/options"
+  }, /*#__PURE__*/_react.default.createElement(_Options.default, null))));
 }
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../components/AddPost":"components/AddPost.js","../components/Feed":"components/Feed.js","../components/Header":"components/Header.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../components/AddPost":"components/AddPost.js","../components/Feed":"components/Feed.js","../components/Header":"components/Header.js","../components/Options":"components/Options.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
