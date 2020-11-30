@@ -60,26 +60,30 @@ function Feed() {
                             </div>
                         </div>
                         <ul>
-                            <li>
-                                <HeaderUsername>
-                                    <Heading>
-                                        <img className="profile" src={feed.commenter} alt={feed.commenterUsername} />
-                                        <span>{feed.commenterUsername}</span>
-                                    </Heading>
-                                    <span>{commentDate}</span>
-                                </HeaderUsername>
-                                <p>{feed.comment}</p>
-                            </li>
-                            <li>
-                                <HeaderUsername>
-                                    <Heading>
-                                        <img className="profile" src={profile} alt={username} />
-                                        <span>{username}</span>
-                                    </Heading>
-                                    <span>{replyingDate}</span>
-                                </HeaderUsername>
-                                <p>{feed.replyMessage}</p>
-                            </li>
+                            {feed.commentDate && 
+                                <li>
+                                    <HeaderUsername>
+                                        <Heading>
+                                            <img className="profile" src={feed.commenter} alt={feed.commenterUsername} />
+                                            <span>{feed.commenterUsername}</span>
+                                        </Heading>
+                                        <span>{commentDate}</span>
+                                    </HeaderUsername>
+                                    <p>{feed.comment}</p>
+                                </li>
+                            }
+                            {feed.replyDate && 
+                                <li>
+                                    <HeaderUsername>
+                                        <Heading>
+                                            <img className="profile" src={profile} alt={username} />
+                                            <span>{username}</span>
+                                        </Heading>
+                                        <span>{replyingDate}</span>
+                                    </HeaderUsername>
+                                    <p>{feed.replyMessage}</p>
+                                </li>
+                            }
                         </ul>
                         <form>
                             <input type="text" placeholder="Add a comment..." />

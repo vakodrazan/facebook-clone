@@ -35962,11 +35962,11 @@ function Feed() {
     }, username)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
       src: feed.photo,
       alt: `${feed.userName}'s post`
-    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.like, " likes"))), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.like, " likes"))), /*#__PURE__*/_react.default.createElement("ul", null, feed.commentDate && /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
       className: "profile",
       src: feed.commenter,
       alt: feed.commenterUsername
-    }), /*#__PURE__*/_react.default.createElement("span", null, feed.commenterUsername)), /*#__PURE__*/_react.default.createElement("span", null, commentDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.comment)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    }), /*#__PURE__*/_react.default.createElement("span", null, feed.commenterUsername)), /*#__PURE__*/_react.default.createElement("span", null, commentDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.comment)), feed.replyDate && /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
       className: "profile",
       src: profile,
       alt: username
