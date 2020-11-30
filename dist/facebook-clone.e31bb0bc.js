@@ -35778,11 +35778,13 @@ exports.default = _default;
 module.exports = [{
   "id": 159722431000023,
   "userName": "Noeline Marie",
+  "profilePhoto": "https://iili.io/Fwvaat.jpg",
   "date": 1597224310000,
   "description": "Today is my birthday. Anyone want to join me with my party.",
   "photo": "https://iili.io/FwkT1S.jpg",
   "like": 20,
   "commenterUsername": "Natacha Volana",
+  "commenter": "https://onja.org/wp-content/uploads/2019/03/volanaNatacha@2x-368x268.jpg",
   "comment": "Happy birthday",
   "commentDate": 1597224610000,
   "replyMessage": "Thank you sis",
@@ -35790,10 +35792,12 @@ module.exports = [{
 }, {
   "id": 160379161400084,
   "userName": "Noeline Marie",
+  "profilePhoto": "https://iili.io/Fwvaat.jpg",
   "date": 1603791614000,
   "description": "Thanks to my sister for making my hair like this. I love it so much.",
   "photo": "https://i.ibb.co/d6hBs7T/IMG-20200524-181649-664.jpg",
   "like": 20,
+  "commenter": "https://onja.org/wp-content/uploads/2019/08/Clopedia@2x-368x268.jpg",
   "commenterUsername": "Clopedia Nomenjanahary",
   "comment": "Wow, Nice",
   "commentDate": 1603809614000,
@@ -35856,13 +35860,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const ArticleStyle = _styledComponents.default.article`
-    .header-username {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        justify-content: space-between;
-    }
-
     section {
         padding-top: 30px;
         &:not(:last-child) {
@@ -35870,22 +35867,62 @@ const ArticleStyle = _styledComponents.default.article`
             padding-bottom: 40px;
         }
     }
+`;
+const HeaderUsername = _styledComponents.default.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
+`;
+const Heading = _styledComponents.default.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+        padding-left : 10px;
+    }
 `;
 
 function Feed() {
   const {
     allFeed
   } = (0, _react.useContext)(_Context.Context);
-  return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, allFeed.map(feed => /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("header", {
-    className: "header-username"
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    key: feed.id
-  }, feed.userName), /*#__PURE__*/_react.default.createElement("img", {
-    className: "profile",
-    src: "https://iili.io/Fwvaat.jpg",
-    alt: "Noeline Marie"
-  })))));
+  return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, allFeed.map(feed => {
+    const postingDate = new Date(feed.date);
+    const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
+    const commentCurrentDate = new Date(feed.commentDate);
+    const commentDate = `${commentCurrentDate.getDate()}/${commentCurrentDate.getMonth() + 1}/${commentCurrentDate.getFullYear()}`;
+    const replyCurrentDate = new Date(feed.replyDate);
+    const replyingDate = `${replyCurrentDate.getDate()}/${replyCurrentDate.getMonth() + 1}/${replyCurrentDate.getFullYear()}`;
+    return /*#__PURE__*/_react.default.createElement("section", {
+      key: feed.id
+    }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+      className: "profile",
+      src: feed.profilePhoto,
+      alt: "Noeline Marie"
+    }), /*#__PURE__*/_react.default.createElement("span", {
+      key: feed.id
+    }, feed.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
+      src: feed.photo,
+      alt: `${feed.userName}'s post`
+    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.like, " likes"))), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+      className: "profile",
+      src: feed.commenter,
+      alt: feed.commenterUsername
+    }), /*#__PURE__*/_react.default.createElement("span", null, feed.commenterUsername)), /*#__PURE__*/_react.default.createElement("span", null, commentDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.comment)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+      className: "profile",
+      src: feed.profilePhoto,
+      alt: feed.userName
+    }), /*#__PURE__*/_react.default.createElement("span", null, feed.userName)), /*#__PURE__*/_react.default.createElement("span", null, replyingDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.replyMessage))), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("input", {
+      type: "text",
+      placeholder: "Add a comment..."
+    }), /*#__PURE__*/_react.default.createElement("button", {
+      "aria-label": "submit your comment"
+    }, "Post")));
+  }));
 }
 
 var _default = Feed;
@@ -36053,7 +36090,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63555" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62012" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
