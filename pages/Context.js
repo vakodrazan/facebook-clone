@@ -5,6 +5,8 @@ const Context = createContext();
 
 function ContextProvider({children}) {
     const [allFeed, setAllFeed] = useState([]);
+    const [username, setUsername] = useState("Noeline Marie");
+    const [profile, setProfile] = useState("https://iili.io/Fwvaat.jpg");
 
     useEffect(() => {
         setAllFeed(feedPost);
@@ -24,7 +26,7 @@ function ContextProvider({children}) {
     }
 
     return (
-        <Context.Provider value={{ allFeed, submitPost }}>
+        <Context.Provider value={{ username, profile, allFeed, submitPost }}>
             {children}
         </Context.Provider>
     )
