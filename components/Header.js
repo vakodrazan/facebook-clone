@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Context } from '../pages/Context';
 
 const HeaderStyle = styled.header`
     display: flex;
@@ -39,6 +40,7 @@ const HeaderStyle = styled.header`
 `;
 
 function Header() {
+    const { profile, username } = useContext(Context);
     return (
         <HeaderStyle>
             <h1 className="heading">OnjaBook</h1>
@@ -53,8 +55,8 @@ function Header() {
                 </li>
                 <li>
                     <Link to="/options" className="userName">
-                        <span>Noeline Marie</span>
-                        <img className="profile" src="https://iili.io/Fwvaat.jpg" alt="Noeline Marie" />
+                        <span>{username}</span>
+                        <img className="profile" src={profile} alt="Noeline Marie" />
                     </Link>
                 </li>
             </ul>

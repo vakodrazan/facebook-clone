@@ -33856,8 +33856,6 @@ if ("development" !== "production") {
 },{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"feedPost.json":[function(require,module,exports) {
 module.exports = [{
   "id": 159722431000023,
-  "userName": "Noeline Marie",
-  "profilePhoto": "https://iili.io/Fwvaat.jpg",
   "date": 1597224310000,
   "description": "Today is my birthday. Anyone want to join me with my party.",
   "photo": "https://iili.io/FwkT1S.jpg",
@@ -33870,8 +33868,6 @@ module.exports = [{
   "replyDate": 1597225210000
 }, {
   "id": 160379161400084,
-  "userName": "Noeline Marie",
-  "profilePhoto": "https://iili.io/Fwvaat.jpg",
   "date": 1603791614000,
   "description": "Thanks to my sister for making my hair like this. I love it so much.",
   "photo": "https://i.ibb.co/d6hBs7T/IMG-20200524-181649-664.jpg",
@@ -33909,6 +33905,8 @@ function ContextProvider({
   children
 }) {
   const [allFeed, setAllFeed] = (0, _react.useState)([]);
+  const [username, setUsername] = (0, _react.useState)("Noeline Marie");
+  const [profile, setProfile] = (0, _react.useState)("https://iili.io/Fwvaat.jpg");
   (0, _react.useEffect)(() => {
     setAllFeed(_feedPost.default);
   }, []);
@@ -33928,6 +33926,8 @@ function ContextProvider({
 
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
+      username,
+      profile,
       allFeed,
       submitPost
     }
@@ -35940,7 +35940,9 @@ const Heading = _styledComponents.default.div`
 
 function Feed() {
   const {
-    allFeed
+    allFeed,
+    username,
+    profile
   } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, allFeed.map(feed => {
     const postingDate = new Date(feed.date);
@@ -35953,11 +35955,11 @@ function Feed() {
       key: feed.id
     }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
       className: "profile",
-      src: feed.profilePhoto,
-      alt: "Noeline Marie"
+      src: profile,
+      alt: username
     }), /*#__PURE__*/_react.default.createElement("span", {
       key: feed.id
-    }, feed.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
+    }, username)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
       src: feed.photo,
       alt: `${feed.userName}'s post`
     }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.like, " likes"))), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
@@ -35966,9 +35968,9 @@ function Feed() {
       alt: feed.commenterUsername
     }), /*#__PURE__*/_react.default.createElement("span", null, feed.commenterUsername)), /*#__PURE__*/_react.default.createElement("span", null, commentDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.comment)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
       className: "profile",
-      src: feed.profilePhoto,
-      alt: feed.userName
-    }), /*#__PURE__*/_react.default.createElement("span", null, feed.userName)), /*#__PURE__*/_react.default.createElement("span", null, replyingDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.replyMessage))), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("input", {
+      src: profile,
+      alt: username
+    }), /*#__PURE__*/_react.default.createElement("span", null, username)), /*#__PURE__*/_react.default.createElement("span", null, replyingDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.replyMessage))), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("input", {
       type: "text",
       placeholder: "Add a comment..."
     }), /*#__PURE__*/_react.default.createElement("button", {
@@ -35987,13 +35989,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _Context = require("../pages/Context");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const HeaderStyle = _styledComponents.default.header`
     display: flex;
@@ -36032,6 +36040,10 @@ const HeaderStyle = _styledComponents.default.header`
 `;
 
 function Header() {
+  const {
+    profile,
+    username
+  } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", {
     className: "heading"
   }, "OnjaBook"), /*#__PURE__*/_react.default.createElement("ul", {
@@ -36043,16 +36055,16 @@ function Header() {
   }, "Add post")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/options",
     className: "userName"
-  }, /*#__PURE__*/_react.default.createElement("span", null, "Noeline Marie"), /*#__PURE__*/_react.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("span", null, username), /*#__PURE__*/_react.default.createElement("img", {
     className: "profile",
-    src: "https://iili.io/Fwvaat.jpg",
+    src: profile,
     alt: "Noeline Marie"
   })))));
 }
 
 var _default = Header;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/Options.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../pages/Context":"pages/Context.js"}],"components/Options.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

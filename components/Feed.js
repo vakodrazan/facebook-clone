@@ -31,7 +31,7 @@ const Heading = styled.div`
     }
 `
 function Feed() {
-    const { allFeed } = useContext(Context);
+    const { allFeed, username, profile } = useContext(Context);
     return (
         <ArticleStyle>
             {allFeed.map(feed => {
@@ -46,8 +46,8 @@ function Feed() {
                     <section key={feed.id}>
                         <HeaderUsername>
                             <Heading>
-                                <img className="profile" src={feed.profilePhoto} alt="Noeline Marie" />
-                                <span key={feed.id} >{feed.userName}</span>
+                                <img className="profile" src={profile} alt={username} />
+                                <span key={feed.id} >{username}</span>
                             </Heading>
                             <span>{postDate}</span>
                         </HeaderUsername>
@@ -73,8 +73,8 @@ function Feed() {
                             <li>
                                 <HeaderUsername>
                                     <Heading>
-                                        <img className="profile" src={feed.profilePhoto} alt={feed.userName} />
-                                        <span>{feed.userName}</span>
+                                        <img className="profile" src={profile} alt={username} />
+                                        <span>{username}</span>
                                     </Heading>
                                     <span>{replyingDate}</span>
                                 </HeaderUsername>
