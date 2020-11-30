@@ -15,3 +15,8 @@ img {
 ul {
     @include reset-list();
 }
+.profile {
+    border-radius: 100%;
+    width: 46px;
+    height: 46px;
+}

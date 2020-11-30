@@ -35774,7 +35774,123 @@ exports.ServerStyleSheet = Ue;
 "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "production" !== "development" && "test" !== "development" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, 1 === window["__styled-components-init__"] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
 var _default = qe;
 exports.default = _default;
-},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"components/Header.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"feedPost.json":[function(require,module,exports) {
+module.exports = [{
+  "id": 159722431000023,
+  "userName": "Noeline Marie",
+  "date": 1597224310000,
+  "description": "Today is my birthday. Anyone want to join me with my party.",
+  "photo": "https://iili.io/FwkT1S.jpg",
+  "like": 20,
+  "commenterUsername": "Natacha Volana",
+  "comment": "Happy birthday",
+  "commentDate": 1597224610000,
+  "replyMessage": "Thank you sis",
+  "replyDate": 1597225210000
+}, {
+  "id": 160379161400084,
+  "userName": "Noeline Marie",
+  "date": 1603791614000,
+  "description": "Thanks to my sister for making my hair like this. I love it so much.",
+  "photo": "https://i.ibb.co/d6hBs7T/IMG-20200524-181649-664.jpg",
+  "like": 20,
+  "commenterUsername": "Clopedia Nomenjanahary",
+  "comment": "Wow, Nice",
+  "commentDate": 1603809614000,
+  "replyMessage": "Thanks",
+  "replyDate": 1603870814000
+}];
+},{}],"pages/Context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ContextProvider = ContextProvider;
+exports.Context = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _feedPost = _interopRequireDefault(require("../feedPost.json"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Context = (0, _react.createContext)();
+exports.Context = Context;
+
+function ContextProvider({
+  children
+}) {
+  const [allFeed, setAllFeed] = (0, _react.useState)([]);
+  (0, _react.useEffect)(() => {
+    setAllFeed(_feedPost.default);
+  }, []);
+  return /*#__PURE__*/_react.default.createElement(Context.Provider, {
+    value: {
+      allFeed
+    }
+  }, children);
+}
+},{"react":"node_modules/react/index.js","../feedPost.json":"feedPost.json"}],"components/Feed.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Context = require("../pages/Context");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const ArticleStyle = _styledComponents.default.article`
+    .header-username {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    section {
+        padding-top: 30px;
+        &:not(:last-child) {
+            border-bottom: 1px solid gray;
+            padding-bottom: 40px;
+        }
+    }
+
+`;
+
+function Feed() {
+  const {
+    allFeed
+  } = (0, _react.useContext)(_Context.Context);
+  return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, allFeed.map(feed => /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("header", {
+    className: "header-username"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    key: feed.id
+  }, feed.userName), /*#__PURE__*/_react.default.createElement("img", {
+    className: "profile",
+    src: "https://iili.io/Fwvaat.jpg",
+    alt: "Noeline Marie"
+  })))));
+}
+
+var _default = Feed;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../pages/Context":"pages/Context.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35783,6 +35899,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -35811,20 +35929,14 @@ const HeaderStyle = _styledComponents.default.header`
             padding: 3px;
         }
 
-        img {
-            border-radius: 100%;
-            width: 46px;
-            height: 46px;
-        }
-
         .userName {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-
+            
             span {
-                padding-right: 10px;
+                padding-right: 3px;
             }
         }
     }
@@ -35835,9 +35947,12 @@ function Header() {
     className: "heading"
   }, "OnjaBook"), /*#__PURE__*/_react.default.createElement("ul", {
     className: "list"
-  }, /*#__PURE__*/_react.default.createElement("li", null, "Feed"), /*#__PURE__*/_react.default.createElement("li", null, "Add post"), /*#__PURE__*/_react.default.createElement("li", {
+  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, "Feed")), /*#__PURE__*/_react.default.createElement("li", null, "Add post"), /*#__PURE__*/_react.default.createElement("li", {
     className: "userName"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Noeline Marie"), /*#__PURE__*/_react.default.createElement("img", {
+    className: "profile",
     src: "https://iili.io/Fwvaat.jpg",
     alt: "Noeline Marie"
   }))));
@@ -35845,7 +35960,7 @@ function Header() {
 
 var _default = Header;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/Homepage.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/Homepage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35877,20 +35992,24 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _Feed = _interopRequireDefault(require("../components/Feed"));
+
+var _Header = _interopRequireDefault(require("../components/Header"));
+
 var _Homepage = _interopRequireDefault(require("../components/Homepage"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
-  }, /*#__PURE__*/_react.default.createElement(_Homepage.default, null))));
+  }, /*#__PURE__*/_react.default.createElement(_Feed.default, null))));
 }
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../components/Homepage":"components/Homepage.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../components/Feed":"components/Feed.js","../components/Header":"components/Header.js","../components/Homepage":"components/Homepage.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -35901,10 +36020,12 @@ var _reactRouterDom = require("react-router-dom");
 
 var _App = _interopRequireDefault(require("./pages/App"));
 
+var _Context = require("./pages/Context");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById("root"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./pages/App":"pages/App.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_Context.ContextProvider, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null))), document.getElementById("root"));
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./pages/App":"pages/App.js","./pages/Context":"pages/Context.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

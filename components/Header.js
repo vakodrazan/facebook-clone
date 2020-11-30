@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderStyle = styled.header`
@@ -24,20 +25,14 @@ const HeaderStyle = styled.header`
             padding: 3px;
         }
 
-        img {
-            border-radius: 100%;
-            width: 46px;
-            height: 46px;
-        }
-
         .userName {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-
+            
             span {
-                padding-right: 10px;
+                padding-right: 3px;
             }
         }
     }
@@ -48,11 +43,15 @@ function Header() {
         <HeaderStyle>
             <h1 className="heading">OnjaBook</h1>
             <ul className="list">
-                <li>Feed</li>
+                <li>
+                    <Link to="/">
+                        Feed
+                    </Link>
+                </li>
                 <li>Add post</li>
                 <li className="userName">
                     <span>Noeline Marie</span>
-                    <img src="https://iili.io/Fwvaat.jpg" alt="Noeline Marie" />
+                    <img className="profile" src="https://iili.io/Fwvaat.jpg" alt="Noeline Marie" />
                 </li>
             </ul>
         </HeaderStyle>
