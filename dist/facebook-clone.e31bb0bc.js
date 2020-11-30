@@ -33919,9 +33919,14 @@ function ContextProvider({
       date: Date.now(),
       description: form.addText.value,
       photo: form.addUrl.value,
-      like: 0
+      like: 0,
+      commenter: "",
+      commenterUsername: "",
+      comment: "",
+      commentDate: ""
     };
     setAllFeed([...allFeed, newPost]);
+    form.reset();
   }
 
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {

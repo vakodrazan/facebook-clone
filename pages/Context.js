@@ -21,8 +21,13 @@ function ContextProvider({children}) {
             description: form.addText.value,
             photo: form.addUrl.value,
             like: 0,
+            commenter: "",
+            commenterUsername: "",
+            comment: "",
+            commentDate: "",
         }
         setAllFeed([...allFeed, newPost])
+        form.reset();
     }
 
     return (
