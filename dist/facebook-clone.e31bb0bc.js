@@ -33866,7 +33866,13 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function AddPost() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Hello"));
+  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "New post:"), /*#__PURE__*/_react.default.createElement("textarea", {
+    rows: "4",
+    type: "text",
+    placeholder: "Say what\u2019s on your mind..."
+  })), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Picture url: "), /*#__PURE__*/_react.default.createElement("input", {
+    type: "url"
+  })), /*#__PURE__*/_react.default.createElement("button", null, "Post"));
 }
 
 var _default = AddPost;
