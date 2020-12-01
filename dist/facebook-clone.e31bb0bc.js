@@ -35905,7 +35905,82 @@ exports.ServerStyleSheet = Ue;
 "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "production" !== "development" && "test" !== "development" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, 1 === window["__styled-components-init__"] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
 var _default = qe;
 exports.default = _default;
-},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"components/Feed.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"components/AddComment.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _Context = require("../pages/Context");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function AddComment() {
+  const {
+    AddNewComment
+  } = (0, _react.useContext)(_Context.Context);
+  return /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: AddNewComment
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    placeholder: "Add a comment...",
+    name: "comment"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    "aria-label": "submit your comment"
+  }, "Post"));
+}
+
+var _default = AddComment;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../pages/Context":"pages/Context.js"}],"components/CommentPost.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _Context = require("../pages/Context");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function Comment({
+  feed,
+  HeaderUsername,
+  Heading
+}) {
+  const {
+    username,
+    profile
+  } = (0, _react.useContext)(_Context.Context);
+  const commentCurrentDate = new Date(feed.commentDate);
+  const commentDate = `${commentCurrentDate.getDate()}/${commentCurrentDate.getMonth() + 1}/${commentCurrentDate.getFullYear()}`;
+  const replyCurrentDate = new Date(feed.replyDate);
+  const replyingDate = `${replyCurrentDate.getDate()}/${replyCurrentDate.getMonth() + 1}/${replyCurrentDate.getFullYear()}`;
+  return /*#__PURE__*/_react.default.createElement("ul", null, feed.commentDate && /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    className: "profile",
+    src: feed.commenter,
+    alt: feed.commenterUsername
+  }), /*#__PURE__*/_react.default.createElement("span", null, feed.commenterUsername)), /*#__PURE__*/_react.default.createElement("span", null, commentDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.comment)), feed.replyDate && /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    className: "profile",
+    src: profile,
+    alt: username
+  }), /*#__PURE__*/_react.default.createElement("span", null, username)), /*#__PURE__*/_react.default.createElement("span", null, replyingDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.replyMessage)));
+}
+
+var _default = Comment;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../pages/Context":"pages/Context.js"}],"components/FeedPost.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35919,21 +35994,16 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Context = require("../pages/Context");
 
+var _AddComment = _interopRequireDefault(require("./AddComment"));
+
+var _CommentPost = _interopRequireDefault(require("./CommentPost"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const ArticleStyle = _styledComponents.default.article`
-    section {
-        padding-top: 30px;
-        &:not(:last-child) {
-            border-bottom: 1px solid gray;
-            padding-bottom: 40px;
-        }
-    }
-`;
 const HeaderUsername = _styledComponents.default.div`
     display: flex;
     flex-direction: row;
@@ -35952,55 +36022,80 @@ const Heading = _styledComponents.default.div`
     }
 `;
 
+function FeedPost({
+  feed
+}) {
+  const {
+    username,
+    profile
+  } = (0, _react.useContext)(_Context.Context);
+  const postingDate = new Date(feed.date);
+  const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
+  return /*#__PURE__*/_react.default.createElement("section", {
+    key: feed.id
+  }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
+    className: "profile",
+    src: profile,
+    alt: username
+  }), /*#__PURE__*/_react.default.createElement("span", {
+    key: feed.id
+  }, username)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
+    src: feed.photo,
+    alt: `${feed.userName}'s post`
+  }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.like, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
+    feed: feed,
+    HeaderUsername: HeaderUsername,
+    Heading: Heading
+  }), /*#__PURE__*/_react.default.createElement(_AddComment.default, null));
+}
+
+var _default = FeedPost;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../pages/Context":"pages/Context.js","./AddComment":"components/AddComment.js","./CommentPost":"components/CommentPost.js"}],"components/Feed.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Context = require("../pages/Context");
+
+var _FeedPost = _interopRequireDefault(require("./FeedPost"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const ArticleStyle = _styledComponents.default.article`
+    section {
+        padding-top: 30px;
+        &:not(:last-child) {
+            border-bottom: 1px solid gray;
+            padding-bottom: 40px;
+        }
+    }
+`;
+
 function Feed() {
   const {
-    allFeed,
-    username,
-    profile,
-    newComment,
-    AddNewComment
+    allFeed
   } = (0, _react.useContext)(_Context.Context);
-  return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, allFeed.map(feed => {
-    const postingDate = new Date(feed.date);
-    const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
-    const commentCurrentDate = new Date(feed.commentDate);
-    const commentDate = `${commentCurrentDate.getDate()}/${commentCurrentDate.getMonth() + 1}/${commentCurrentDate.getFullYear()}`;
-    const replyCurrentDate = new Date(feed.replyDate);
-    const replyingDate = `${replyCurrentDate.getDate()}/${replyCurrentDate.getMonth() + 1}/${replyCurrentDate.getFullYear()}`;
-    return /*#__PURE__*/_react.default.createElement("section", {
-      key: feed.id
-    }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
-      className: "profile",
-      src: profile,
-      alt: username
-    }), /*#__PURE__*/_react.default.createElement("span", {
-      key: feed.id
-    }, username)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
-      src: feed.photo,
-      alt: `${feed.userName}'s post`
-    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.like, " likes"))), /*#__PURE__*/_react.default.createElement("ul", null, feed.commentDate && /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
-      className: "profile",
-      src: feed.commenter,
-      alt: feed.commenterUsername
-    }), /*#__PURE__*/_react.default.createElement("span", null, feed.commenterUsername)), /*#__PURE__*/_react.default.createElement("span", null, commentDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.comment)), feed.replyDate && /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
-      className: "profile",
-      src: profile,
-      alt: username
-    }), /*#__PURE__*/_react.default.createElement("span", null, username)), /*#__PURE__*/_react.default.createElement("span", null, replyingDate)), /*#__PURE__*/_react.default.createElement("p", null, feed.replyMessage)), /*#__PURE__*/_react.default.createElement("li", null, newComment)), /*#__PURE__*/_react.default.createElement("form", {
-      onSubmit: AddNewComment
-    }, /*#__PURE__*/_react.default.createElement("input", {
-      type: "text",
-      placeholder: "Add a comment...",
-      name: "comment"
-    }), /*#__PURE__*/_react.default.createElement("button", {
-      "aria-label": "submit your comment"
-    }, "Post")));
-  }));
+  return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, allFeed.map(feed => /*#__PURE__*/_react.default.createElement(_FeedPost.default, {
+    key: feed.id,
+    feed: feed
+  })));
 }
 
 var _default = Feed;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../pages/Context":"pages/Context.js"}],"components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../pages/Context":"pages/Context.js","./FeedPost":"components/FeedPost.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36188,7 +36283,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62012" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51128" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
