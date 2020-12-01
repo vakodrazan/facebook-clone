@@ -36015,14 +36015,17 @@ function Comment({
     allUsers
   } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement("ul", null, feed.comments.map(comment => {
+    // find the user's id to crab the name and the profile
     const commentUser = allUsers.find(user => user.userId === comment.userId);
+    const date = new Date(comment.commentDate);
+    const postDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     return /*#__PURE__*/_react.default.createElement("li", {
       key: comment.commentId
     }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
       className: "profile",
       src: commentUser.userProfile,
       alt: commentUser.userName
-    }), /*#__PURE__*/_react.default.createElement("span", null, commentUser.userName)), /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("p", null, comment.commentMessage));
+    }), /*#__PURE__*/_react.default.createElement("span", null, commentUser.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("p", null, comment.commentMessage));
   }));
 }
 
