@@ -33913,10 +33913,6 @@ function ContextProvider({
     setAllFeed(_feedPost.default);
   }, []);
 
-  function AddNewComment(e) {
-    setNewComment(commentMessage);
-  }
-
   function submitPost(e) {
     e.preventDefault();
     const form = e.target;
@@ -33942,7 +33938,6 @@ function ContextProvider({
       allFeed,
       submitPost,
       newComment,
-      AddNewComment,
       commentMessage,
       setCommentMessage
     }
@@ -35924,7 +35919,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function AddComment() {
   const {
-    AddNewComment,
     commentMessage,
     setCommentMessage
   } = (0, _react.useContext)(_Context.Context);
@@ -35934,7 +35928,6 @@ function AddComment() {
     value: commentMessage,
     onChange: e => setCommentMessage(e.target.value)
   }), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: AddNewComment,
     "aria-label": "submit your comment"
   }, "Post"));
 }

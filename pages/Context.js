@@ -14,10 +14,6 @@ function ContextProvider({children}) {
         setAllFeed(feedPost);
     }, []);
 
-    function AddNewComment(e) {
-        setNewComment(commentMessage);
-    }
-
     function submitPost(e) {
         e.preventDefault();
         const form = e.target;
@@ -44,7 +40,6 @@ function ContextProvider({children}) {
                 allFeed, 
                 submitPost, 
                 newComment, 
-                AddNewComment, 
                 commentMessage, 
                 setCommentMessage,
             }}
