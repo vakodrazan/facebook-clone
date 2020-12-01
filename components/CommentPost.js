@@ -2,17 +2,18 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../pages/Context';
 
 function Comment({feed, HeaderUsername, Heading}) {
-    const { allComments, setAllComments } = useContext(Context);
-
+    const { allUsers } = useContext(Context);
     return (
         <ul>
                 {feed.comments.map(comment => {
+                    const commentUser = allUsers.find(user => user.userId === comment.userId);
+
                     return (
-                        <li key={comment.id}>
+                        <li key={comment.commentId}>
                             <HeaderUsername>
                                 <Heading>
-                                    <img className="profile" src={comment.commenterProfile} alt={comment.commenterUsername} />
-                                    <span>{comment.commenterUsername}</span>
+                                    <img className="profile" src={commentUser.userProfile} alt={commentUser.userName} />
+                                    <span>{commentUser.userName}</span>
                                 </Heading>
                                 <span></span>
                             </HeaderUsername>

@@ -33870,11 +33870,13 @@ module.exports = [{
   "comments": [{
     "commentMessage": "Happy birthday",
     "commentDate": 1597224610000,
-    "userId": 15972246100003
+    "userId": 15972246100003,
+    "commentId": 15972246100002893
   }, {
     "commentMessage": "Wow",
     "commentDate": 1597225210000,
-    "userId": 15972252100002
+    "userId": 15972252100002,
+    "commentId": 1597227752100002
   }]
 }, {
   "id": 160379161400084,
@@ -33892,11 +33894,13 @@ module.exports = [{
   "comments": [{
     "commentMessage": "Wow, nice!",
     "commentDate": 1603809614000,
-    "userId": 160380961400022
+    "userId": 160380961400022,
+    "commentId": 163730380961400022
   }, {
     "commentMessage": "Hahaha",
     "commentDate": 1603870814000,
-    "userId": 160387081400330
+    "userId": 160387081400330,
+    "commentId": 160387081403630330
   }]
 }];
 },{}],"userData.json":[function(require,module,exports) {
@@ -33963,10 +33967,11 @@ function ContextProvider({
     const form = e.target;
     const newPost = {
       id: Date.now(),
+      useId: 13888379833130,
       date: Date.now(),
       description: form.addText.value,
       photo: form.addUrl.value,
-      like: 0,
+      like: [],
       comments: []
     };
     setAllFeed([...allFeed, newPost]);
@@ -36007,17 +36012,17 @@ function Comment({
   Heading
 }) {
   const {
-    allComments,
-    setAllComments
+    allUsers
   } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement("ul", null, feed.comments.map(comment => {
+    const commentUser = allUsers.find(user => user.userId === comment.userId);
     return /*#__PURE__*/_react.default.createElement("li", {
-      key: comment.id
+      key: comment.commentId
     }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
       className: "profile",
-      src: comment.commenterProfile,
-      alt: comment.commenterUsername
-    }), /*#__PURE__*/_react.default.createElement("span", null, comment.commenterUsername)), /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("p", null, comment.commentMessage));
+      src: commentUser.userProfile,
+      alt: commentUser.userName
+    }), /*#__PURE__*/_react.default.createElement("span", null, commentUser.userName)), /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("p", null, comment.commentMessage));
   }));
 }
 
@@ -36073,21 +36078,26 @@ function FeedPost({
   } = (0, _react.useContext)(_Context.Context);
   const currentUser = allUsers.find(user => user.userId === feed.userId);
   if (!currentUser) return null;
-  console.log(currentUser?.userProfile);
   const postingDate = new Date(feed.date);
   const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
   return /*#__PURE__*/_react.default.createElement("section", {
     key: feed.id
   }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
     className: "profile",
-    src: currentUser?.userProfile,
-    alt: currentUser?.userName
+    src: currentUser.userProfile,
+    alt: currentUser.userName
   }), /*#__PURE__*/_react.default.createElement("span", {
     key: feed.id
-  }, currentUser?.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
+  }, currentUser.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
     src: feed.photo,
     alt: " post"
-  }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, "likes"))));
+  }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, "Likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
+    feed: feed,
+    HeaderUsername: HeaderUsername,
+    Heading: Heading
+  }), /*#__PURE__*/_react.default.createElement(_AddComment.default, {
+    feed: feed
+  }));
 }
 
 var _default = FeedPost;
