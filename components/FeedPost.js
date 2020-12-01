@@ -25,7 +25,10 @@ const Heading = styled.div`
 
 function FeedPost({feed}) {
 
-    const { username, profile } = useContext(Context);
+    const { allUsers } = useContext(Context);
+    const currentUser = allUsers.find(user => user.userId === feed.userId);
+    if (!currentUser) return null;   
+    console.log(currentUser?.userProfile);
 
     const postingDate = new Date(feed.date);
     const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
@@ -34,22 +37,22 @@ function FeedPost({feed}) {
         <section key={feed.id}>
             <HeaderUsername>
                 <Heading>
-                    <img className="profile" src={profile} alt={username} />
-                    <span key={feed.id} >{username}</span>
+                    <img className="profile" src={currentUser?.userProfile} alt={currentUser?.userName} />
+                    <span key={feed.id} >{currentUser?.userName}</span>
                 </Heading>
                 <span>{postDate}</span>
             </HeaderUsername>
             <div>
                 <p>{feed.description}</p>
-                <img src={feed.photo} alt={`${feed.userName}'s post`} />
+                <img src={feed.photo} alt=" post" />
                 <div>
                     <button>Like</button>
-                    <span>{feed.like} likes</span>
+                    <span>likes</span>
                 </div>
             </div>
 
-            <CommentPost feed={feed} HeaderUsername={HeaderUsername} Heading={Heading} />
-            <AddComment feed={feed} />
+            {/* <CommentPost feed={feed} HeaderUsername={HeaderUsername} Heading={Heading} />
+            <AddComment feed={feed} /> */}
 
         </section>
     )

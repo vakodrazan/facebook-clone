@@ -1,16 +1,20 @@
 import React, { createContext, useEffect, useState } from 'react';
 import feedPost from "../feedPost.json";
+import userData from "../userData.json";
 
 const Context = createContext();
 
 function ContextProvider({children}) {
     const [allFeed, setAllFeed] = useState([]);
-    const [allComments, setAllComments] = useState([]);
+    const [allUsers, setAllUsers] = useState([]);
     const [newComment, setNewComment] = useState("");
 
     useEffect(() => {
         setAllFeed(feedPost);
     }, []);
+    useEffect(() => {
+        setAllUsers(userData);
+    }, [])
 
     function submitPost(e) {
         e.preventDefault();
@@ -29,27 +33,15 @@ function ContextProvider({children}) {
 
     function addNewComment(feedId) {
         const finding = allFeed.find(item => item.id === feedId);
-
         console.log(finding);
-        // if (!finding.id) return; 
-        // const newCom = {
-        //     commenterUsername: username,
-        //     commenterProfile: profile,
-        //     commentMessage: newComment,
-        //     commentDate: Date.now(),
-        //     id: Date.now(),
-        // }
     }
 
     return (
         <Context.Provider 
-            value={{ 
-                username, 
-                profile, 
+            value={{
                 allFeed, 
+                allUsers,
                 submitPost,
-                allComments,
-                setAllComments,
                 addNewComment,
                 newComment,
                 setNewComment,
