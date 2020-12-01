@@ -1,39 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../pages/Context';
 
 function Comment({feed, HeaderUsername, Heading}) {
-    const { username, profile } = useContext(Context);
-
-    const commentCurrentDate = new Date(feed.commentDate);
-    const commentDate = `${commentCurrentDate.getDate()}/${commentCurrentDate.getMonth() + 1}/${commentCurrentDate.getFullYear()}`;
-    const replyCurrentDate = new Date(feed.replyDate);
-    const replyingDate = `${replyCurrentDate.getDate()}/${replyCurrentDate.getMonth() + 1}/${replyCurrentDate.getFullYear()}`;
+    const { allComments, setAllComments } = useContext(Context);
 
     return (
         <ul>
-            {feed.commentDate && 
-                <li>
-                    <HeaderUsername>
-                        <Heading>
-                            <img className="profile" src={feed.commenter} alt={feed.commenterUsername} />
-                            <span>{feed.commenterUsername}</span>
-                        </Heading>
-                        <span>{commentDate}</span>
-                    </HeaderUsername>
-                    <p>{feed.comment}</p>
-                </li>
-            }
-            {feed.replyDate && 
-                <li>
-                    <HeaderUsername>
-                        <Heading>
-                            <img className="profile" src={profile} alt={username} />
-                            <span>{username}</span>
-                        </Heading>
-                        <span>{replyingDate}</span>
-                    </HeaderUsername>
-                    <p>{feed.replyMessage}</p>
-                </li>
+                {feed.comments.map(comment => {
+                    return (
+                        <li key={comment.id}>
+                            <HeaderUsername>
+                                <Heading>
+                                    <img className="profile" src={comment.commenterProfile} alt={comment.commenterUsername} />
+                                    <span>{comment.commenterUsername}</span>
+                                </Heading>
+                                <span></span>
+                            </HeaderUsername>
+                            <p>{comment.commentMessage}</p>
+                        </li>
+                    )
+                })
             }
         </ul>
     )

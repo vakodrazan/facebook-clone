@@ -49,7 +49,7 @@ function FeedPost({feed}) {
             </div>
 
             <CommentPost feed={feed} HeaderUsername={HeaderUsername} Heading={Heading} />
-            <AddComment />
+            <AddComment feed={feed} />
 
         </section>
     )

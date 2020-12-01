@@ -5,10 +5,8 @@ const Context = createContext();
 
 function ContextProvider({children}) {
     const [allFeed, setAllFeed] = useState([]);
-    const [username, setUsername] = useState("Noeline Marie");
-    const [profile, setProfile] = useState("https://iili.io/Fwvaat.jpg");
+    const [allComments, setAllComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-    const [commentMessage, setCommentMessage] = useState("");
 
     useEffect(() => {
         setAllFeed(feedPost);
@@ -23,13 +21,24 @@ function ContextProvider({children}) {
             description: form.addText.value,
             photo: form.addUrl.value,
             like: 0,
-            commenter: "",
-            commenterUsername: "",
-            comment: "",
-            commentDate: "",
+            comments: []
         }
         setAllFeed([...allFeed, newPost])
         form.reset();
+    }
+
+    function addNewComment(feedId) {
+        const finding = allFeed.find(item => item.id === feedId);
+
+        console.log(finding);
+        // if (!finding.id) return; 
+        // const newCom = {
+        //     commenterUsername: username,
+        //     commenterProfile: profile,
+        //     commentMessage: newComment,
+        //     commentDate: Date.now(),
+        //     id: Date.now(),
+        // }
     }
 
     return (
@@ -38,10 +47,12 @@ function ContextProvider({children}) {
                 username, 
                 profile, 
                 allFeed, 
-                submitPost, 
-                newComment, 
-                commentMessage, 
-                setCommentMessage,
+                submitPost,
+                allComments,
+                setAllComments,
+                addNewComment,
+                newComment,
+                setNewComment,
             }}
         >
             {children}

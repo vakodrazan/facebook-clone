@@ -1,19 +1,20 @@
 import React, { useContext } from 'react'
 import { Context } from '../pages/Context';
 
-function AddComment() {
-    const { commentMessage, setCommentMessage } = useContext(Context);
+function AddComment({feed}) {
+    const { newComment, setNewComment, addNewComment } = useContext(Context);
 
     return (
         <div>
             <input 
                 type="text" 
                 placeholder="Add a comment..." 
-                value={commentMessage}
-                onChange={(e) => setCommentMessage(e.target.value)}
+                name="newComment"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
 
             />
-            <button aria-label="submit your comment">Post</button>
+            <button onClick={() => addNewComment(feed.id)} aria-label="submit your comment">Post</button>
         </div>
     )
 }
