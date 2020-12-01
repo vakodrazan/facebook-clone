@@ -33908,14 +33908,13 @@ function ContextProvider({
   const [username, setUsername] = (0, _react.useState)("Noeline Marie");
   const [profile, setProfile] = (0, _react.useState)("https://iili.io/Fwvaat.jpg");
   const [newComment, setNewComment] = (0, _react.useState)("");
+  const [commentMessage, setCommentMessage] = (0, _react.useState)("");
   (0, _react.useEffect)(() => {
     setAllFeed(_feedPost.default);
   }, []);
 
   function AddNewComment(e) {
-    e.preventDefault();
-    const form = e.target;
-    setNewComment(form.comment.value);
+    setNewComment(commentMessage);
   }
 
   function submitPost(e) {
@@ -33943,7 +33942,9 @@ function ContextProvider({
       allFeed,
       submitPost,
       newComment,
-      AddNewComment
+      AddNewComment,
+      commentMessage,
+      setCommentMessage
     }
   }, children);
 }
@@ -35923,15 +35924,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function AddComment() {
   const {
-    AddNewComment
+    AddNewComment,
+    commentMessage,
+    setCommentMessage
   } = (0, _react.useContext)(_Context.Context);
-  return /*#__PURE__*/_react.default.createElement("form", {
-    onSubmit: AddNewComment
-  }, /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     placeholder: "Add a comment...",
-    name: "comment"
+    value: commentMessage,
+    onChange: e => setCommentMessage(e.target.value)
   }), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: AddNewComment,
     "aria-label": "submit your comment"
   }, "Post"));
 }

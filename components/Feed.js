@@ -13,6 +13,7 @@ const ArticleStyle = styled.article`
     }
 `;
 
+
 function Feed() {
     const { allFeed } = useContext(Context);
     return (

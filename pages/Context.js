@@ -8,15 +8,14 @@ function ContextProvider({children}) {
     const [username, setUsername] = useState("Noeline Marie");
     const [profile, setProfile] = useState("https://iili.io/Fwvaat.jpg");
     const [newComment, setNewComment] = useState("");
+    const [commentMessage, setCommentMessage] = useState("");
 
     useEffect(() => {
         setAllFeed(feedPost);
     }, []);
 
     function AddNewComment(e) {
-        e.preventDefault();
-        const form = e.target;
-        setNewComment(form.comment.value)
+        setNewComment(commentMessage);
     }
 
     function submitPost(e) {
@@ -46,6 +45,8 @@ function ContextProvider({children}) {
                 submitPost, 
                 newComment, 
                 AddNewComment, 
+                commentMessage, 
+                setCommentMessage,
             }}
         >
             {children}
