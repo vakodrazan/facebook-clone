@@ -36156,39 +36156,59 @@ function FeedPost({
   } = (0, _react.useContext)(_Context.Context);
   const {
     allUsers,
-    allFeed
+    allFeed,
+    currentUser
   } = state;
-  const currentUser = allUsers.find(user => user.userId === feed.userId);
-  if (!currentUser) return null;
+  const postedUser = allUsers.find(user => user.userId === feed.userId);
+  if (!postedUser) return null;
   const postingDate = new Date(feed.date);
   const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
 
-  function updateLike(id) {
-    const liked = feed.like.length + 1;
-    const findUser = allFeed.map(post => {
-      if (post.id === id) {
-        return { ...post,
-          like: [...post.like, liked]
-        };
-      }
+  function updateLike(postId) {
+    const isAlreadyLiked = feed.like.some(item => item.userId === currentUser.userId);
 
-      return post;
-    });
-    dispatch({
-      type: "UPDATE_LIKE",
-      allFeed: findUser
-    });
+    if (!isAlreadyLiked) {
+      const updatedPost = allFeed.map(post => {
+        if (post.id === postId) {
+          return { ...post,
+            like: [...post.like, currentUser]
+          };
+        }
+
+        return post;
+      });
+      dispatch({
+        type: "UPDATE_LIKE",
+        allFeed: updatedPost
+      });
+    } else {
+      const updatedPost = allFeed.map(post => {
+        if (post.id === postId) {
+          const newLike = post.like.filter(like => like.id !== currentUser.userId); // console.log(newLike.length - 1);
+
+          return { ...post,
+            like: newLike
+          };
+        }
+
+        return post;
+      });
+      dispatch({
+        type: "UPDATE_LIKE",
+        allFeed: updatedPost
+      });
+    }
   }
 
   return /*#__PURE__*/_react.default.createElement("section", {
     key: feed.id
   }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
     className: "profile",
-    src: currentUser.userProfile,
-    alt: currentUser.userName
+    src: postedUser.userProfile,
+    alt: postedUser.userName
   }), /*#__PURE__*/_react.default.createElement("span", {
     key: feed.id
-  }, currentUser.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
+  }, postedUser.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
     src: feed.photo,
     alt: " post"
   }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {

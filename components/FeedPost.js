@@ -26,34 +26,50 @@ const Heading = styled.div`
 function FeedPost({feed}) {
 
     const { state, dispatch } = useContext(Context);
-    const { allUsers, allFeed } = state;
+    const { allUsers, allFeed, currentUser } = state;
 
-    const currentUser = allUsers.find(user => user.userId === feed.userId);
-    if (!currentUser) return null;   
+    const postedUser = allUsers.find(user => user.userId === feed.userId);
+    if (!postedUser) return null;   
 
     const postingDate = new Date(feed.date);
     const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
 
-    function updateLike(id) {
-        const liked = feed.like.length + 1;
-        const findUser = allFeed.map(post => {
-            if (post.id === id) {
-                return {
-                    ...post,
-                    like: [...post.like, liked]
+    function updateLike(postId) {
+        const isAlreadyLiked = feed.like.some(item => item.userId === currentUser.userId);
+        if (!isAlreadyLiked) {
+            const updatedPost  = allFeed.map(post => {
+                if (post.id === postId) {
+                    return {
+                        ...post,
+                        like: [...post.like, currentUser]
+                    }
                 }
-            }
-            return post
-        })
-        dispatch({ type: "UPDATE_LIKE", allFeed: findUser});
+                return post
+            })
+            dispatch({ type: "UPDATE_LIKE", allFeed: updatedPost });
+        } else {
+            const updatedPost  = allFeed.map(post => {
+                if (post.id === postId) {
+                    const newLike = post.like.filter(like => like.id !== currentUser.userId);
+                    // console.log(newLike.length - 1);
+                    return {
+                        ...post,
+                        like: newLike
+                    }
+                }
+                return post
+            })
+            dispatch({ type: "UPDATE_LIKE", allFeed: updatedPost });
+            
+        }
     }
 
     return (
         <section key={feed.id}>
             <HeaderUsername>
                 <Heading>
-                    <img className="profile" src={currentUser.userProfile} alt={currentUser.userName} />
-                    <span key={feed.id} >{currentUser.userName}</span>
+                    <img className="profile" src={postedUser.userProfile} alt={postedUser.userName} />
+                    <span key={feed.id} >{postedUser.userName}</span>
                 </Heading>
                 <span>{postDate}</span>
             </HeaderUsername>
