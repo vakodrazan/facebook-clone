@@ -25,6 +25,7 @@ function AddComment({feed}) {
             return item;
         });
         dispatch({type: "ALL_FEEDS", allFeed: findUser});
+        setComment("")
     }
 
     return (
