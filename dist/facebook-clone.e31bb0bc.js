@@ -36232,9 +36232,13 @@ const HeaderStyle = _styledComponents.default.header`
 
 function Header() {
   const {
-    profile,
-    username
+    state
   } = (0, _react.useContext)(_Context.Context);
+  const {
+    allUsers
+  } = state;
+  const findUser = allUsers.find(user => user.userId === 13888379833130);
+  if (!findUser) return null;
   return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", {
     className: "heading"
   }, "OnjaBook"), /*#__PURE__*/_react.default.createElement("ul", {
@@ -36246,10 +36250,10 @@ function Header() {
   }, "Add post")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/options",
     className: "userName"
-  }, /*#__PURE__*/_react.default.createElement("span", null, username), /*#__PURE__*/_react.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("span", null, findUser.userName), /*#__PURE__*/_react.default.createElement("img", {
     className: "profile",
-    src: profile,
-    alt: "Noeline Marie"
+    src: findUser.userProfile,
+    alt: findUser.userName
   })))));
 }
 

@@ -40,7 +40,11 @@ const HeaderStyle = styled.header`
 `;
 
 function Header() {
-    const { profile, username } = useContext(Context);
+    const { state } = useContext(Context);
+    const { allUsers } = state;
+    const findUser = allUsers.find(user => user.userId === 13888379833130);
+    if (!findUser) return null;
+
     return (
         <HeaderStyle>
             <h1 className="heading">OnjaBook</h1>
@@ -55,8 +59,8 @@ function Header() {
                 </li>
                 <li>
                     <Link to="/options" className="userName">
-                        <span>{username}</span>
-                        <img className="profile" src={profile} alt="Noeline Marie" />
+                        <span>{findUser.userName}</span>
+                        <img className="profile" src={findUser.userProfile} alt={findUser.userName} />
                     </Link>
                 </li>
             </ul>
