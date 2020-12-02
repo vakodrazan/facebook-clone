@@ -15,7 +15,8 @@ const ArticleStyle = styled.article`
 
 
 function Feed() {
-    const { allFeed } = useContext(Context);
+    const { state } = useContext(Context);
+    const { allFeed } = state; 
     return (
         <ArticleStyle>
             {allFeed.map(feed => (<FeedPost key={feed.id} feed={feed} />))}

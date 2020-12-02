@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Context } from '../pages/Context';
 
 function Comment({feed, HeaderUsername, Heading}) {
-    const { allUsers } = useContext(Context);
+    const { state } = useContext(Context);
+    const { allUsers } = state;
+
     return (
         <ul>
             {feed.comments.map(comment => {

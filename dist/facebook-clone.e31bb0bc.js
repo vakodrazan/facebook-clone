@@ -33952,14 +33952,39 @@ exports.Context = Context;
 function ContextProvider({
   children
 }) {
-  const [allFeed, setAllFeed] = (0, _react.useState)([]);
-  const [allUsers, setAllUsers] = (0, _react.useState)([]);
+  const [state, dispatch] = (0, _react.useReducer)((state, action) => {
+    switch (action.type) {
+      case "ALL_FEEDS":
+        return { ...state,
+          allFeed: action.allFeed
+        };
+
+      case "ALL_USERS":
+        return { ...state,
+          allUsers: action.allUsers
+        };
+
+      default:
+        return state;
+    }
+  }, {
+    allFeed: [],
+    allUsers: []
+  }); // const [allFeed, setAllFeed] = useState([]);
+  // const [allUsers, setAllUsers] = useState([]);
+
   const [newComment, setNewComment] = (0, _react.useState)("");
   (0, _react.useEffect)(() => {
-    setAllFeed(_feedPost.default);
+    dispatch({
+      type: "ALL_FEEDS",
+      allFeed: _feedPost.default
+    });
   }, []);
   (0, _react.useEffect)(() => {
-    setAllUsers(_userData.default);
+    dispatch({
+      type: "ALL_USERS",
+      allUsers: _userData.default
+    });
   }, []);
 
   function submitPost(e) {
@@ -33979,18 +34004,13 @@ function ContextProvider({
   }
 
   function addNewComment(feedId) {
-    const finding = allFeed.find(item => item.id === feedId);
     console.log(finding);
   }
 
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
-      allFeed,
-      allUsers,
-      submitPost,
-      addNewComment,
-      newComment,
-      setNewComment
+      state,
+      dispatch
     }
   }, children);
 }
@@ -36012,8 +36032,11 @@ function Comment({
   Heading
 }) {
   const {
-    allUsers
+    state
   } = (0, _react.useContext)(_Context.Context);
+  const {
+    allUsers
+  } = state;
   return /*#__PURE__*/_react.default.createElement("ul", null, feed.comments.map(comment => {
     // find the user's id to crab the name and the profile
     const commentUser = allUsers.find(user => user.userId === comment.userId);
@@ -36077,8 +36100,11 @@ function FeedPost({
   feed
 }) {
   const {
-    allUsers
+    state
   } = (0, _react.useContext)(_Context.Context);
+  const {
+    allUsers
+  } = state;
   const currentUser = allUsers.find(user => user.userId === feed.userId);
   if (!currentUser) return null;
   const postingDate = new Date(feed.date);
@@ -36139,8 +36165,11 @@ const ArticleStyle = _styledComponents.default.article`
 
 function Feed() {
   const {
-    allFeed
+    state
   } = (0, _react.useContext)(_Context.Context);
+  const {
+    allFeed
+  } = state;
   return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, allFeed.map(feed => /*#__PURE__*/_react.default.createElement(_FeedPost.default, {
     key: feed.id,
     feed: feed
@@ -36337,7 +36366,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52702" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49862" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

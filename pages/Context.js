@@ -1,19 +1,34 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useReducer, useState } from 'react';
 import feedPost from "../feedPost.json";
 import userData from "../userData.json";
 
 const Context = createContext();
 
 function ContextProvider({children}) {
-    const [allFeed, setAllFeed] = useState([]);
-    const [allUsers, setAllUsers] = useState([]);
+
+    const [state, dispatch] = useReducer((state, action) => {
+        switch (action.type) {
+            case "ALL_FEEDS":
+                return {...state, allFeed: action.allFeed}
+            case "ALL_USERS":
+                return {...state, allUsers: action.allUsers}
+            default: 
+                return state
+        }
+    }, {
+        allFeed: [],
+        allUsers: [],
+    }) 
+
+    // const [allFeed, setAllFeed] = useState([]);
+    // const [allUsers, setAllUsers] = useState([]);
     const [newComment, setNewComment] = useState("");
 
     useEffect(() => {
-        setAllFeed(feedPost);
+        dispatch({ type: "ALL_FEEDS", allFeed: feedPost });
     }, []);
     useEffect(() => {
-        setAllUsers(userData);
+        dispatch({ type: "ALL_USERS", allUsers: userData });
     }, [])
 
     function submitPost(e) {
@@ -33,20 +48,12 @@ function ContextProvider({children}) {
     }
 
     function addNewComment(feedId) {
-        const finding = allFeed.find(item => item.id === feedId);
         console.log(finding);
     }
 
     return (
         <Context.Provider 
-            value={{
-                allFeed, 
-                allUsers,
-                submitPost,
-                addNewComment,
-                newComment,
-                setNewComment,
-            }}
+            value={{ state, dispatch }}
         >
             {children}
         </Context.Provider>

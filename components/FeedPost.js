@@ -25,7 +25,9 @@ const Heading = styled.div`
 
 function FeedPost({feed}) {
 
-    const { allUsers } = useContext(Context);
+    const { state } = useContext(Context);
+    const { allUsers } = state;
+
     const currentUser = allUsers.find(user => user.userId === feed.userId);
     if (!currentUser) return null;   
 
