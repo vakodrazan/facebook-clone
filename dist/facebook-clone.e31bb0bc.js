@@ -33969,6 +33969,11 @@ function ContextProvider({
           allFeed: action.allFeed
         };
 
+      case "ADD_NEW_COMMENT":
+        return { ...state,
+          allFeed: action.allFeed
+        };
+
       case "USER_LOGGED_IN":
         return { ...state,
           currentUser: action.currentUser
@@ -36020,7 +36025,6 @@ function AddComment({
     };
     const findUser = allFeed.map(item => {
       if (item.id === feed.id) {
-        console.log([...item.comments, addComment]);
         return { ...item,
           comments: [...item.comments, addComment]
         };
@@ -36029,7 +36033,7 @@ function AddComment({
       return item;
     });
     dispatch({
-      type: "ALL_FEEDS",
+      type: "ADD_NEW_COMMENT",
       allFeed: findUser
     });
     setComment("");

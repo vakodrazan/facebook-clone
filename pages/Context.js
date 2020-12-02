@@ -14,6 +14,8 @@ function ContextProvider({children}) {
                 return { ...state, allUsers: action.allUsers }
             case "ADD_NEW_POST":
                 return { ...state, allFeed: action.allFeed }
+            case "ADD_NEW_COMMENT":
+                return { ...state, allFeed: action.allFeed }
             case "USER_LOGGED_IN":
                 return { ...state, currentUser: action.currentUser }
             default: 

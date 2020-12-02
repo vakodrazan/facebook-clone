@@ -16,7 +16,6 @@ function AddComment({feed}) {
 
         const findUser = allFeed.map(item => {
             if (item.id === feed.id) {
-                console.log([...item.comments, addComment]);
                 return {
                     ...item,
                     comments: [...item.comments, addComment]
@@ -24,7 +23,7 @@ function AddComment({feed}) {
             } 
             return item;
         });
-        dispatch({type: "ALL_FEEDS", allFeed: findUser});
+        dispatch({type: "ADD_NEW_COMMENT", allFeed: findUser});
         setComment("")
     }
 
