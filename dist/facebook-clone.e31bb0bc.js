@@ -33969,12 +33969,18 @@ function ContextProvider({
           allFeed: action.allFeed
         };
 
+      case "USER_LOGGED_IN":
+        return { ...state,
+          currentUser: action.currentUser
+        };
+
       default:
         return state;
     }
   }, {
     allFeed: [],
-    allUsers: []
+    allUsers: [],
+    currentUser: {}
   });
   (0, _react.useEffect)(() => {
     dispatch({
@@ -35985,26 +35991,63 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Context = require("../pages/Context");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function AddComment({
   feed
 }) {
+  const {
+    state,
+    dispatch
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    allFeed
+  } = state;
+  const [comment, setComment] = (0, _react.useState)("");
+
+  function handleSubmitNewComment(feedId) {
+    const addComment = {
+      commentMessage: comment,
+      commentDate: Date.now(),
+      userId: 13888379833130,
+      commentId: Date.now()
+    };
+    const findUser = allFeed.map(item => {
+      if (item.id === feed.id) {
+        console.log([...item.comments, addComment]);
+        return { ...item,
+          comments: [...item.comments, addComment]
+        };
+      }
+
+      return item;
+    });
+    dispatch({
+      type: "ALL_FEEDS",
+      allFeed: findUser
+    });
+  }
+
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     placeholder: "Add a comment...",
-    name: "newComment"
+    value: comment,
+    onChange: e => setComment(e.target.value)
   }), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: () => addNewComment(feed.id),
+    onClick: () => handleSubmitNewComment(feed),
     "aria-label": "submit your comment"
   }, "Post"));
 }
 
 var _default = AddComment;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"components/CommentPost.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../pages/Context":"pages/Context.js"}],"components/CommentPost.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36232,12 +36275,15 @@ const HeaderStyle = _styledComponents.default.header`
 
 function Header() {
   const {
-    state
+    state,
+    dispatch
   } = (0, _react.useContext)(_Context.Context);
   const {
-    allUsers
+    allUsers,
+    currentUser
   } = state;
-  const findUser = allUsers.find(user => user.userId === 13888379833130);
+  const findUser = allUsers.find(user => user.userId === 13888379833130); // dispatch({ type: "USER_LOGGED_IN", currentUser: findUser})
+
   if (!findUser) return null;
   return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", {
     className: "heading"

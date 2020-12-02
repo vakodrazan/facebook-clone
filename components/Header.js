@@ -40,10 +40,14 @@ const HeaderStyle = styled.header`
 `;
 
 function Header() {
-    const { state } = useContext(Context);
-    const { allUsers } = state;
+    const { state, dispatch } = useContext(Context);
+    const { allUsers, currentUser } = state;
+
     const findUser = allUsers.find(user => user.userId === 13888379833130);
+    // dispatch({ type: "USER_LOGGED_IN", currentUser: findUser})
+    
     if (!findUser) return null;
+
 
     return (
         <HeaderStyle>

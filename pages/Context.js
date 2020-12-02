@@ -14,12 +14,15 @@ function ContextProvider({children}) {
                 return { ...state, allUsers: action.allUsers }
             case "ADD_NEW_POST":
                 return { ...state, allFeed: action.allFeed }
+            case "USER_LOGGED_IN":
+                return { ...state, currentUser: action.currentUser }
             default: 
                 return state
         }
     }, {
         allFeed: [],
         allUsers: [],
+        currentUser: {}
     }) 
 
     useEffect(() => {
@@ -28,7 +31,6 @@ function ContextProvider({children}) {
     useEffect(() => {
         dispatch({ type: "ALL_USERS", allUsers: userData });
     }, [])
-
 
     return (
         <Context.Provider 
