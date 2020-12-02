@@ -26,13 +26,22 @@ const Heading = styled.div`
 function FeedPost({feed}) {
 
     const { state } = useContext(Context);
-    const { allUsers } = state;
+    const { allUsers, allFeed } = state;
 
     const currentUser = allUsers.find(user => user.userId === feed.userId);
     if (!currentUser) return null;   
 
     const postingDate = new Date(feed.date);
     const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
+
+    const likeLength = feed.like.length;
+
+    function updateLike(id) {
+        const findUser = allFeed.find(item => item.id === id)
+        const increaseLike = likeLength + 1
+        console.log(increaseLike);
+    }
+
 
     return (
         <section key={feed.id}>
@@ -47,8 +56,8 @@ function FeedPost({feed}) {
                 <p>{feed.description}</p>
                 <img src={feed.photo} alt=" post" />
                 <div>
-                    <button>Like</button>
-                    <span>Likes</span>
+                    <button onClick={() => updateLike(feed.id)}>Like</button>
+                    <span>{likeLength} likes</span>
                 </div>
             </div>
 

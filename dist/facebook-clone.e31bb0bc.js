@@ -36032,6 +36032,7 @@ function AddComment({
       type: "ALL_FEEDS",
       allFeed: findUser
     });
+    setComment("");
   }
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
@@ -36140,12 +36141,21 @@ function FeedPost({
     state
   } = (0, _react.useContext)(_Context.Context);
   const {
-    allUsers
+    allUsers,
+    allFeed
   } = state;
   const currentUser = allUsers.find(user => user.userId === feed.userId);
   if (!currentUser) return null;
   const postingDate = new Date(feed.date);
   const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
+  const likeLength = feed.like.length;
+
+  function updateLike(id) {
+    const findUser = allFeed.find(item => item.id === id);
+    const increaseLike = likeLength + 1;
+    console.log(increaseLike);
+  }
+
   return /*#__PURE__*/_react.default.createElement("section", {
     key: feed.id
   }, /*#__PURE__*/_react.default.createElement(HeaderUsername, null, /*#__PURE__*/_react.default.createElement(Heading, null, /*#__PURE__*/_react.default.createElement("img", {
@@ -36157,7 +36167,9 @@ function FeedPost({
   }, currentUser.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
     src: feed.photo,
     alt: " post"
-  }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", null, "Like"), /*#__PURE__*/_react.default.createElement("span", null, "Likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
+  }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: () => updateLike(feed.id)
+  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, likeLength, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
     feed: feed,
     HeaderUsername: HeaderUsername,
     Heading: Heading
