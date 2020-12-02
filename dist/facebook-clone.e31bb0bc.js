@@ -33974,6 +33974,11 @@ function ContextProvider({
           allFeed: action.allFeed
         };
 
+      case "UPDATE_LIKE":
+        return { ...state,
+          allFeed: action.allFeed
+        };
+
       case "USER_LOGGED_IN":
         return { ...state,
           currentUser: action.currentUser
@@ -33985,7 +33990,11 @@ function ContextProvider({
   }, {
     allFeed: [],
     allUsers: [],
-    currentUser: {}
+    currentUser: {
+      userId: 13888379833130,
+      userName: "Noeline Marie",
+      userProfile: "https://iili.io/Fwvaat.jpg"
+    }
   });
   (0, _react.useEffect)(() => {
     dispatch({
@@ -36142,7 +36151,8 @@ function FeedPost({
   feed
 }) {
   const {
-    state
+    state,
+    dispatch
   } = (0, _react.useContext)(_Context.Context);
   const {
     allUsers,
@@ -36152,12 +36162,22 @@ function FeedPost({
   if (!currentUser) return null;
   const postingDate = new Date(feed.date);
   const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
-  const likeLength = feed.like.length;
 
   function updateLike(id) {
-    const findUser = allFeed.find(item => item.id === id);
-    const increaseLike = likeLength + 1;
-    console.log(increaseLike);
+    const liked = feed.like.length + 1;
+    const findUser = allFeed.map(post => {
+      if (post.id === id) {
+        return { ...post,
+          like: [...post.like, liked]
+        };
+      }
+
+      return post;
+    });
+    dispatch({
+      type: "UPDATE_LIKE",
+      allFeed: findUser
+    });
   }
 
   return /*#__PURE__*/_react.default.createElement("section", {
@@ -36173,7 +36193,7 @@ function FeedPost({
     alt: " post"
   }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => updateLike(feed.id)
-  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, likeLength, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
+  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.like.length, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
     feed: feed,
     HeaderUsername: HeaderUsername,
     Heading: Heading
@@ -36291,16 +36311,11 @@ const HeaderStyle = _styledComponents.default.header`
 
 function Header() {
   const {
-    state,
-    dispatch
+    state
   } = (0, _react.useContext)(_Context.Context);
   const {
-    allUsers,
     currentUser
   } = state;
-  const findUser = allUsers.find(user => user.userId === 13888379833130); // dispatch({ type: "USER_LOGGED_IN", currentUser: findUser})
-
-  if (!findUser) return null;
   return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", {
     className: "heading"
   }, "OnjaBook"), /*#__PURE__*/_react.default.createElement("ul", {
@@ -36312,10 +36327,10 @@ function Header() {
   }, "Add post")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/options",
     className: "userName"
-  }, /*#__PURE__*/_react.default.createElement("span", null, findUser.userName), /*#__PURE__*/_react.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("span", null, currentUser.userName), /*#__PURE__*/_react.default.createElement("img", {
     className: "profile",
-    src: findUser.userProfile,
-    alt: findUser.userName
+    src: currentUser.userProfile,
+    alt: currentUser.userName
   })))));
 }
 
@@ -36426,7 +36441,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49862" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64692" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

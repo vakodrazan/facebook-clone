@@ -16,6 +16,8 @@ function ContextProvider({children}) {
                 return { ...state, allFeed: action.allFeed }
             case "ADD_NEW_COMMENT":
                 return { ...state, allFeed: action.allFeed }
+            case "UPDATE_LIKE":
+                return { ...state, allFeed: action.allFeed }
             case "USER_LOGGED_IN":
                 return { ...state, currentUser: action.currentUser }
             default: 
@@ -24,7 +26,11 @@ function ContextProvider({children}) {
     }, {
         allFeed: [],
         allUsers: [],
-        currentUser: {}
+        currentUser: {
+            userId: 13888379833130,
+            userName: "Noeline Marie",
+            userProfile: "https://iili.io/Fwvaat.jpg"
+        }
     }) 
 
     useEffect(() => {

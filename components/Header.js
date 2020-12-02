@@ -40,13 +40,8 @@ const HeaderStyle = styled.header`
 `;
 
 function Header() {
-    const { state, dispatch } = useContext(Context);
-    const { allUsers, currentUser } = state;
-
-    const findUser = allUsers.find(user => user.userId === 13888379833130);
-    // dispatch({ type: "USER_LOGGED_IN", currentUser: findUser})
-    
-    if (!findUser) return null;
+    const { state } = useContext(Context);
+    const { currentUser } = state;
 
 
     return (
@@ -63,8 +58,8 @@ function Header() {
                 </li>
                 <li>
                     <Link to="/options" className="userName">
-                        <span>{findUser.userName}</span>
-                        <img className="profile" src={findUser.userProfile} alt={findUser.userName} />
+                        <span>{currentUser.userName}</span>
+                        <img className="profile" src={currentUser.userProfile} alt={currentUser.userName} />
                     </Link>
                 </li>
             </ul>
