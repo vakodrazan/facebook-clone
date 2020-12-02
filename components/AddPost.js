@@ -2,7 +2,25 @@ import React, { useContext } from 'react';
 import { Context } from '../pages/Context';
 
 function AddPost() {
-    const { submitPost } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
+    const { allFeed } = state;
+
+    function submitPost(e) {
+        e.preventDefault();
+        const form = e.target;
+        const newPost = {
+            id: Date.now(),
+            userId: 160380961400022,
+            date: Date.now(),
+            description: form.addText.value,
+            photo: form.addUrl.value,
+            like: [],
+            comments: []
+        }
+
+        dispatch({ type: "ADD_NEW_POST", allFeed: [...allFeed, newPost]})
+        form.reset();
+    }
 
     return (
         <form onSubmit={submitPost}>
