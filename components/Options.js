@@ -1,13 +1,40 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Context } from '../pages/Context';
 
 function Options() {
+    const { state, dispatch } = useContext(Context);
+    const { allUsers, currentUser } = state;
     const [ userName, setUserName ] = useState("");
     const [ userProfile, setUserProfile ] = useState("");
 
-    
+    const currentUserObj = allUsers.find(user => user.userId === currentUser) || {
+        userName: "",
+		userProfile: "",
+    };
+    useEffect(() => {
+        setUserName(currentUserObj.userName);
+        setUserProfile(currentUserObj.userProfile);
+    }, [allUsers])
+
+    function handleNewOptions(e) {
+        e.preventDefault();
+        const newUserArray = allUsers.map(user => {
+            if (user.userId === currentUser) {
+                // Update the user
+                return {
+                    ...user,
+                    userName: userName,
+                    userProfile: userProfile
+                }
+            }
+            return user
+        })
+
+        dispatch({ type: "UPDATE_CURRENT_USER", allUsers: newUserArray })
+    }
 
     return (
-        <form>
+        <form onSubmit={handleNewOptions}>
             <p>Options:</p>
             <fieldset>
                 <label>Username: </label>

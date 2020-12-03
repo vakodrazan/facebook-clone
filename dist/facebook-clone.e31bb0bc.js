@@ -33955,34 +33955,53 @@ function ContextProvider({
   const [state, dispatch] = (0, _react.useReducer)((state, action) => {
     switch (action.type) {
       case "ALL_FEEDS":
-        return { ...state,
-          allFeed: action.allFeed
-        };
+        {
+          return { ...state,
+            allFeed: action.allFeed
+          };
+        }
 
       case "ALL_USERS":
-        return { ...state,
-          allUsers: action.allUsers
-        };
+        {
+          return { ...state,
+            allUsers: action.allUsers
+          };
+        }
 
       case "ADD_NEW_POST":
-        return { ...state,
-          allFeed: action.allFeed
-        };
+        {
+          return { ...state,
+            allFeed: action.allFeed
+          };
+        }
 
       case "ADD_NEW_COMMENT":
-        return { ...state,
-          allFeed: action.allFeed
-        };
+        {
+          return { ...state,
+            allFeed: action.allFeed
+          };
+        }
 
       case "UPDATE_LIKE":
-        return { ...state,
-          allFeed: action.allFeed
-        };
+        {
+          return { ...state,
+            allFeed: action.allFeed
+          };
+        }
 
       case "USER_LOGGED_IN":
-        return { ...state,
-          currentUser: action.currentUser
-        };
+        {
+          return { ...state,
+            currentUser: action.currentUser
+          };
+        }
+
+      case "UPDATE_CURRENT_USER":
+        {
+          return { ...state,
+            allUsers: action.allUsers
+          };
+        }
 
       default:
         return state;
@@ -36363,14 +36382,54 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _Context = require("../pages/Context");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Options() {
+  const {
+    state,
+    dispatch
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    allUsers,
+    currentUser
+  } = state;
   const [userName, setUserName] = (0, _react.useState)("");
   const [userProfile, setUserProfile] = (0, _react.useState)("");
-  return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("p", null, "Options:"), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Username: "), /*#__PURE__*/_react.default.createElement("input", {
+  const currentUserObj = allUsers.find(user => user.userId === currentUser) || {
+    userName: "",
+    userProfile: ""
+  };
+  (0, _react.useEffect)(() => {
+    setUserName(currentUserObj.userName);
+    setUserProfile(currentUserObj.userProfile);
+  }, [allUsers]);
+
+  function handleNewOptions(e) {
+    e.preventDefault();
+    const newUserArray = allUsers.map(user => {
+      if (user.userId === currentUser) {
+        // Update the user
+        return { ...user,
+          userName: userName,
+          userProfile: userProfile
+        };
+      }
+
+      return user;
+    });
+    dispatch({
+      type: "UPDATE_CURRENT_USER",
+      allUsers: newUserArray
+    });
+  }
+
+  return /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleNewOptions
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Options:"), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Username: "), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     placeholder: "Type your username here",
     value: userName,
@@ -36387,7 +36446,7 @@ function Options() {
 
 var _default = Options;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"pages/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../pages/Context":"pages/Context.js"}],"pages/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

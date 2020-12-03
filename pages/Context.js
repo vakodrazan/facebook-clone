@@ -8,18 +8,30 @@ function ContextProvider({children}) {
 
     const [state, dispatch] = useReducer((state, action) => {
         switch (action.type) {
-            case "ALL_FEEDS":
+            case "ALL_FEEDS": {
                 return { ...state, allFeed: action.allFeed }
-            case "ALL_USERS":
+            }
+            case "ALL_USERS": {
                 return { ...state, allUsers: action.allUsers }
-            case "ADD_NEW_POST":
+            }
+            case "ADD_NEW_POST": {
                 return { ...state, allFeed: action.allFeed }
-            case "ADD_NEW_COMMENT":
+            }
+            case "ADD_NEW_COMMENT": {
                 return { ...state, allFeed: action.allFeed }
-            case "UPDATE_LIKE":
+            }
+            case "UPDATE_LIKE": {
                 return { ...state, allFeed: action.allFeed }
-            case "USER_LOGGED_IN":
+            }
+            case "USER_LOGGED_IN": {
                 return { ...state, currentUser: action.currentUser }
+            }
+            case "UPDATE_CURRENT_USER" : {
+                return {
+                    ...state,
+                    allUsers: action.allUsers
+                }
+            }
             default: 
                 return state
         }
