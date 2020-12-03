@@ -25,18 +25,22 @@ const Heading = styled.div`
 
 function FeedPost({feed}) {
 
+    // Crab the state from the context
     const { state, dispatch } = useContext(Context);
     const { allUsers, allFeed, currentUser } = state;
 
+    // Find the the user by its id
     const postedUser = allUsers.find(user => user.userId === feed.userId);
     if (!postedUser) return null;   
 
     const postingDate = new Date(feed.date);
     const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
 
+    // Update the like
     function updateLike(postId) {
         const isAlreadyLiked = feed.likes.some(like => like.userId === currentUser.userId);
         if (!isAlreadyLiked) {
+            // Increase it when the user hasn't liked it yet
             const updatedPost  = allFeed.map(post => {
                 if (post.id === postId) {
                     return {
@@ -48,6 +52,7 @@ function FeedPost({feed}) {
             })
             dispatch({ type: "UPDATE_LIKE", allFeed: updatedPost });
         } else {
+            // Unlike it if the same user like it again
             const updatedPost  = allFeed.map(post => {
                 if (post.id === postId) {
                     const newLike = post.likes.filter(like => like.userId !== currentUser.userId);
@@ -59,7 +64,6 @@ function FeedPost({feed}) {
                 return post
             })
             dispatch({ type: "UPDATE_LIKE", allFeed: updatedPost });
-            
         }
     }
 

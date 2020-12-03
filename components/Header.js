@@ -43,6 +43,7 @@ function Header() {
     const { state } = useContext(Context);
     const { allUsers, currentUser } = state;
 
+    // Find the active user
     const currentUserObj = allUsers.find(user => user.userId === currentUser);
 
     return (
