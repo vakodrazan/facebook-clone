@@ -3,14 +3,14 @@ import { Context } from '../pages/Context';
 
 function AddPost() {
     const { state, dispatch } = useContext(Context);
-    const { allFeed } = state;
+    const { allFeed, currentUser } = state;
 
     function submitPost(e) {
         e.preventDefault();
         const form = e.target;
         const newPost = {
             id: Date.now(),
-            userId: 160380961400022,
+            userId: currentUser,
             date: Date.now(),
             description: form.addText.value,
             photo: form.addUrl.value,

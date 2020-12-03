@@ -34052,7 +34052,8 @@ function AddPost() {
     dispatch
   } = (0, _react.useContext)(_Context.Context);
   const {
-    allFeed
+    allFeed,
+    currentUser
   } = state;
 
   function submitPost(e) {
@@ -34060,7 +34061,7 @@ function AddPost() {
     const form = e.target;
     const newPost = {
       id: Date.now(),
-      userId: 160380961400022,
+      userId: currentUser,
       date: Date.now(),
       description: form.addText.value,
       photo: form.addUrl.value,
