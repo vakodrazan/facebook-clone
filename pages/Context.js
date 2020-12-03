@@ -26,11 +26,7 @@ function ContextProvider({children}) {
     }, {
         allFeed: [],
         allUsers: [],
-        currentUser: {
-            userId: 13888379833130,
-            userName: "Noeline Marie",
-            userProfile: "https://iili.io/Fwvaat.jpg"
-        }
+        currentUser: 13888379833130,
     }) 
 
     useEffect(() => {

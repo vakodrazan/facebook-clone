@@ -41,8 +41,9 @@ const HeaderStyle = styled.header`
 
 function Header() {
     const { state } = useContext(Context);
-    const { currentUser } = state;
+    const { allUsers, currentUser } = state;
 
+    const currentUserObj = allUsers.find(user => user.userId === currentUser);
 
     return (
         <HeaderStyle>
@@ -57,10 +58,12 @@ function Header() {
                     <Link to="/addPost">Add post</Link>
                 </li>
                 <li>
-                    <Link to="/options" className="userName">
-                        <span>{currentUser.userName}</span>
-                        <img className="profile" src={currentUser.userProfile} alt={currentUser.userName} />
-                    </Link>
+                    {currentUserObj && 
+                        <Link to="/options" className="userName">
+                            <span>{currentUserObj.userName}</span>
+                            <img className="profile" src={currentUserObj.userProfile} alt={currentUserObj.userName} />
+                        </Link>
+                    }
                 </li>
             </ul>
         </HeaderStyle>

@@ -33990,11 +33990,7 @@ function ContextProvider({
   }, {
     allFeed: [],
     allUsers: [],
-    currentUser: {
-      userId: 13888379833130,
-      userName: "Noeline Marie",
-      userProfile: "https://iili.io/Fwvaat.jpg"
-    }
+    currentUser: 13888379833130
   });
   (0, _react.useEffect)(() => {
     dispatch({
@@ -36333,8 +36329,10 @@ function Header() {
     state
   } = (0, _react.useContext)(_Context.Context);
   const {
+    allUsers,
     currentUser
   } = state;
+  const currentUserObj = allUsers.find(user => user.userId === currentUser);
   return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", {
     className: "heading"
   }, "OnjaBook"), /*#__PURE__*/_react.default.createElement("ul", {
@@ -36343,13 +36341,13 @@ function Header() {
     to: "/"
   }, "Feed")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/addPost"
-  }, "Add post")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "Add post")), /*#__PURE__*/_react.default.createElement("li", null, currentUserObj && /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/options",
     className: "userName"
-  }, /*#__PURE__*/_react.default.createElement("span", null, currentUser.userName), /*#__PURE__*/_react.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("span", null, currentUserObj.userName), /*#__PURE__*/_react.default.createElement("img", {
     className: "profile",
-    src: currentUser.userProfile,
-    alt: currentUser.userName
+    src: currentUserObj.userProfile,
+    alt: currentUserObj.userName
   })))));
 }
 
@@ -36363,17 +36361,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Options() {
+  const [userName, setUserName] = (0, _react.useState)("");
+  const [userProfile, setUserProfile] = (0, _react.useState)("");
   return /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("p", null, "Options:"), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Username: "), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    placeholder: "Type your username here"
+    placeholder: "Type your username here",
+    value: userName,
+    onChange: e => setUserName(e.target.value)
   })), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Profile picture: "), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    placeholder: "Paste a URL here"
+    placeholder: "Paste a URL here",
+    value: userProfile,
+    onChange: e => setUserProfile(e.target.value)
   })), /*#__PURE__*/_react.default.createElement("button", {
     "aria-label": "save you options"
   }, "Save"));
@@ -36460,7 +36466,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49942" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50436" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
