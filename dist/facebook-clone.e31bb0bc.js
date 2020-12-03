@@ -34030,72 +34030,7 @@ function ContextProvider({
     }
   }, children);
 }
-},{"react":"node_modules/react/index.js","../feedPost.json":"feedPost.json","../userData.json":"userData.json"}],"components/AddPost.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _Context = require("../pages/Context");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function AddPost() {
-  const {
-    state,
-    dispatch
-  } = (0, _react.useContext)(_Context.Context);
-  const {
-    allFeed,
-    currentUser
-  } = state;
-
-  function submitPost(e) {
-    e.preventDefault();
-    const form = e.target; // create a new object for the new post to store all the new value
-    // Crab it by name
-
-    const newPost = {
-      id: Date.now(),
-      userId: currentUser,
-      date: Date.now(),
-      description: form.addText.value,
-      photo: form.addUrl.value,
-      likes: [],
-      comments: []
-    }; // Push the new object in the comment but keep the existing comments
-
-    dispatch({
-      type: "ADD_NEW_POST",
-      allFeed: [...allFeed, newPost]
-    });
-    form.reset();
-  }
-
-  return /*#__PURE__*/_react.default.createElement("form", {
-    onSubmit: submitPost
-  }, /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "New post:"), /*#__PURE__*/_react.default.createElement("textarea", {
-    rows: "4",
-    type: "text",
-    placeholder: "Say what\u2019s on your mind...",
-    name: "addText"
-  })), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Picture url: "), /*#__PURE__*/_react.default.createElement("input", {
-    type: "url",
-    name: "addUrl"
-  })), /*#__PURE__*/_react.default.createElement("button", {
-    "aria-label": "Commit your post"
-  }, "Post"));
-}
-
-var _default = AddPost;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../pages/Context":"pages/Context.js"}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../feedPost.json":"feedPost.json","../userData.json":"userData.json"}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
 //
 
 module.exports = function shallowEqual(objA, objB, compare, compareContext) {
@@ -36016,7 +35951,92 @@ exports.ServerStyleSheet = Ue;
 "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "production" !== "development" && "test" !== "development" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, 1 === window["__styled-components-init__"] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
 var _default = qe;
 exports.default = _default;
-},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"components/AddComment.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"components/Styles.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FormStyle = void 0;
+
+const {
+  default: styled
+} = require("styled-components");
+
+const FormStyle = styled.form`
+    display: grid;
+    grid-template-columns: 200px;
+    gap: 10px;
+`;
+exports.FormStyle = FormStyle;
+},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/AddPost.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _Context = require("../pages/Context");
+
+var _Styles = require("./Styles");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function AddPost() {
+  const {
+    state,
+    dispatch
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    allFeed,
+    currentUser
+  } = state;
+
+  function submitPost(e) {
+    e.preventDefault();
+    const form = e.target; // create a new object for the new post to store all the new value
+    // Crab it by name
+
+    const newPost = {
+      id: Date.now(),
+      userId: currentUser,
+      date: Date.now(),
+      description: form.addText.value,
+      photo: form.addUrl.value,
+      likes: [],
+      comments: []
+    }; // Push the new object in the comment but keep the existing comments
+
+    dispatch({
+      type: "ADD_NEW_POST",
+      allFeed: [...allFeed, newPost]
+    });
+    form.reset();
+  }
+
+  return /*#__PURE__*/_react.default.createElement(_Styles.FormStyle, {
+    onSubmit: submitPost
+  }, /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "New post:"), /*#__PURE__*/_react.default.createElement("textarea", {
+    rows: "4",
+    type: "text",
+    placeholder: "Say what\u2019s on your mind...",
+    name: "addText"
+  })), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Picture url: "), /*#__PURE__*/_react.default.createElement("input", {
+    type: "url",
+    name: "addUrl"
+  })), /*#__PURE__*/_react.default.createElement("button", {
+    "aria-label": "Commit your post"
+  }, "Post"));
+}
+
+var _default = AddPost;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../pages/Context":"pages/Context.js","./Styles":"components/Styles.js"}],"components/AddComment.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

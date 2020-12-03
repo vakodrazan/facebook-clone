@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../pages/Context';
+import { FormStyle } from './Styles';
 
 function AddPost() {
     const { state, dispatch } = useContext(Context);
@@ -26,7 +27,7 @@ function AddPost() {
     }
 
     return (
-        <form onSubmit={submitPost}>
+        <FormStyle onSubmit={submitPost}>
             <fieldset>
                 <label>New post:</label>
                 <textarea 
@@ -45,7 +46,7 @@ function AddPost() {
             <button 
                 aria-label="Commit your post"
             >Post</button>
-        </form>
+        </FormStyle>
     )
 }
 
