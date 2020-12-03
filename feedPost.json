@@ -5,7 +5,7 @@
         "userId": 160387081400330,
         "description": "Today is my birthday. Anyone want to join me with my party.",
         "photo": "https://iili.io/FwkT1S.jpg",
-        "like": [
+        "likes": [
             {
                 "userId": 15972246100003,
                 "liked": 1
@@ -37,7 +37,7 @@
         "userId": 13888379833130,
         "description": "Thanks to my sister for making my hair like this. I love it so much.",
         "photo": "https://i.ibb.co/d6hBs7T/IMG-20200524-181649-664.jpg",
-        "like": [
+        "likes": [
             {
                 "userId": 160380961400022,
                 "liked": 1

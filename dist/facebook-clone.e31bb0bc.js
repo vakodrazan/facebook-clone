@@ -33860,7 +33860,7 @@ module.exports = [{
   "userId": 160387081400330,
   "description": "Today is my birthday. Anyone want to join me with my party.",
   "photo": "https://iili.io/FwkT1S.jpg",
-  "like": [{
+  "likes": [{
     "userId": 15972246100003,
     "liked": 1
   }, {
@@ -33884,7 +33884,7 @@ module.exports = [{
   "userId": 13888379833130,
   "description": "Thanks to my sister for making my hair like this. I love it so much.",
   "photo": "https://i.ibb.co/d6hBs7T/IMG-20200524-181649-664.jpg",
-  "like": [{
+  "likes": [{
     "userId": 160380961400022,
     "liked": 1
   }, {
@@ -36165,13 +36165,13 @@ function FeedPost({
   const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
 
   function updateLike(postId) {
-    const isAlreadyLiked = feed.like.some(item => item.userId === currentUser.userId);
+    const isAlreadyLiked = feed.likes.some(like => like.userId === currentUser.userId);
 
     if (!isAlreadyLiked) {
       const updatedPost = allFeed.map(post => {
         if (post.id === postId) {
           return { ...post,
-            like: [...post.like, currentUser]
+            likes: [...post.likes, currentUser]
           };
         }
 
@@ -36184,10 +36184,9 @@ function FeedPost({
     } else {
       const updatedPost = allFeed.map(post => {
         if (post.id === postId) {
-          const newLike = post.like.filter(like => like.id !== currentUser.userId); // console.log(newLike.length - 1);
-
+          const newLike = post.likes.filter(like => like.userId !== currentUser.userId);
           return { ...post,
-            like: newLike
+            likes: newLike
           };
         }
 
@@ -36213,7 +36212,7 @@ function FeedPost({
     alt: " post"
   }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => updateLike(feed.id)
-  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.like.length, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
+  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.likes.length, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
     feed: feed,
     HeaderUsername: HeaderUsername,
     Heading: Heading
@@ -36461,7 +36460,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64692" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51036" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

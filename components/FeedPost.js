@@ -35,13 +35,13 @@ function FeedPost({feed}) {
     const postDate = `${postingDate.getDate()}/${postingDate.getMonth() + 1}/${postingDate.getFullYear()}`;
 
     function updateLike(postId) {
-        const isAlreadyLiked = feed.like.some(item => item.userId === currentUser.userId);
+        const isAlreadyLiked = feed.likes.some(like => like.userId === currentUser.userId);
         if (!isAlreadyLiked) {
             const updatedPost  = allFeed.map(post => {
                 if (post.id === postId) {
                     return {
                         ...post,
-                        like: [...post.like, currentUser]
+                        likes: [...post.likes, currentUser]
                     }
                 }
                 return post
@@ -50,11 +50,10 @@ function FeedPost({feed}) {
         } else {
             const updatedPost  = allFeed.map(post => {
                 if (post.id === postId) {
-                    const newLike = post.like.filter(like => like.id !== currentUser.userId);
-                    // console.log(newLike.length - 1);
+                    const newLike = post.likes.filter(like => like.userId !== currentUser.userId);
                     return {
                         ...post,
-                        like: newLike
+                        likes: newLike
                     }
                 }
                 return post
@@ -78,7 +77,7 @@ function FeedPost({feed}) {
                 <img src={feed.photo} alt=" post" />
                 <div>
                     <button onClick={() => updateLike(feed.id)}>Like</button>
-                    <span>{feed.like.length} likes</span>
+                    <span>{feed.likes.length} likes</span>
                 </div>
             </div>
 
