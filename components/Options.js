@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../pages/Context';
+import { FormStyle } from './Styles';
 
 function Options() {
     // Crab the state from the context
@@ -38,7 +39,7 @@ function Options() {
     }
 
     return (
-        <form onSubmit={handleNewOptions}>
+        <FormStyle onSubmit={handleNewOptions}>
             <p>Options:</p>
             <fieldset>
                 <label>Username: </label>
@@ -49,7 +50,7 @@ function Options() {
                 <input type="text" placeholder="Paste a URL here" value={userProfile} onChange={(e) => setUserProfile(e.target.value)} />
             </fieldset>
             <button aria-label="save you options">Save</button>
-        </form>
+        </FormStyle>
     )
 }
 
