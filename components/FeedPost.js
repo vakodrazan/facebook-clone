@@ -77,7 +77,7 @@ function FeedPost({feed}) {
                 <img src={feed.photo} alt=" post" />
                 <div>
                     <button onClick={() => updateLike(feed.id)}>Like</button>
-                    <span>{feed.likes.length} likes</span>
+                    <span>{feed.likes && feed.likes.length} likes</span>
                 </div>
             </div>
 

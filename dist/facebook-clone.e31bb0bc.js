@@ -34049,7 +34049,7 @@ function AddPost() {
       date: Date.now(),
       description: form.addText.value,
       photo: form.addUrl.value,
-      like: [],
+      likes: [],
       comments: []
     };
     dispatch({
@@ -36212,7 +36212,7 @@ function FeedPost({
     alt: " post"
   }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => updateLike(feed.id)
-  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.likes.length, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
+  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.likes && feed.likes.length, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
     feed: feed,
     HeaderUsername: HeaderUsername,
     Heading: Heading
@@ -36460,7 +36460,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51036" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49942" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

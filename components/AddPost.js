@@ -14,7 +14,7 @@ function AddPost() {
             date: Date.now(),
             description: form.addText.value,
             photo: form.addUrl.value,
-            like: [],
+            likes: [],
             comments: []
         }
 
