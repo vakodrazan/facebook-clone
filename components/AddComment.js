@@ -14,17 +14,22 @@ function AddComment({feed}) {
             commentId: Date.now(),
         }
 
-        const findUser = allFeed.map(item => {
-            if (item.id === feedId) {
-                return {
-                    ...item,
-                    comments: [...item.comments, addComment]
-                };
-            } 
-            return item;
-        });
-        dispatch({type: "ADD_NEW_COMMENT", allFeed: findUser});
-        setComment("")
+        // Prevent from pushing an empty comment
+        if (comment !== "") {
+            // find the item that is focused
+            // Update the comments
+            const findUser = allFeed.map(item => {
+                if (item.id === feedId) {
+                    return {
+                        ...item,
+                        comments: [...item.comments, addComment]
+                    };
+                } 
+                return item;
+            }); 
+            dispatch({type: "ADD_NEW_COMMENT", allFeed: findUser});
+            setComment("")
+        }
     }
 
     return (
