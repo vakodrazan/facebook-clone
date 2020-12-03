@@ -18,4 +18,13 @@ ul {
   height: 46px;
 }
 
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
 /*# sourceMappingURL=/style.97fcb138.css.map */
