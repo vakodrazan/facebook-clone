@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../pages/Context';
 
 function Options() {
+    // Crab the state from the context
     const { state, dispatch } = useContext(Context);
     const { allUsers, currentUser } = state;
     const [ userName, setUserName ] = useState("");
     const [ userProfile, setUserProfile ] = useState("");
 
+    // find the user that is logged in and if there is no value set up just pass an empty value
     const currentUserObj = allUsers.find(user => user.userId === currentUser) || {
         userName: "",
 		userProfile: "",
@@ -18,6 +20,7 @@ function Options() {
 
     function handleNewOptions(e) {
         e.preventDefault();
+        // Find the user logged in
         const newUserArray = allUsers.map(user => {
             if (user.userId === currentUser) {
                 // Update the user
@@ -30,6 +33,7 @@ function Options() {
             return user
         })
 
+        // Push the new change
         dispatch({ type: "UPDATE_CURRENT_USER", allUsers: newUserArray })
     }
 

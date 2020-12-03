@@ -34058,7 +34058,9 @@ function AddPost() {
 
   function submitPost(e) {
     e.preventDefault();
-    const form = e.target;
+    const form = e.target; // create a new object for the new post to store all the new value
+    // Crab it by name
+
     const newPost = {
       id: Date.now(),
       userId: currentUser,
@@ -34067,7 +34069,8 @@ function AddPost() {
       photo: form.addUrl.value,
       likes: [],
       comments: []
-    };
+    }; // Push the new object in the comment but keep the existing comments
+
     dispatch({
       type: "ADD_NEW_POST",
       allFeed: [...allFeed, newPost]
@@ -36042,6 +36045,7 @@ function AddComment({
   const [comment, setComment] = (0, _react.useState)("");
 
   function handleSubmitNewComment(feedId) {
+    // push the new value in a new object
     const addComment = {
       commentMessage: comment,
       commentDate: Date.now(),
@@ -36395,6 +36399,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Options() {
+  // Crab the state from the context
   const {
     state,
     dispatch
@@ -36404,7 +36409,8 @@ function Options() {
     currentUser
   } = state;
   const [userName, setUserName] = (0, _react.useState)("");
-  const [userProfile, setUserProfile] = (0, _react.useState)("");
+  const [userProfile, setUserProfile] = (0, _react.useState)(""); // find the user that is logged in and if there is no value set up just pass an empty value
+
   const currentUserObj = allUsers.find(user => user.userId === currentUser) || {
     userName: "",
     userProfile: ""
@@ -36415,7 +36421,8 @@ function Options() {
   }, [allUsers]);
 
   function handleNewOptions(e) {
-    e.preventDefault();
+    e.preventDefault(); // Find the user logged in
+
     const newUserArray = allUsers.map(user => {
       if (user.userId === currentUser) {
         // Update the user
@@ -36426,7 +36433,8 @@ function Options() {
       }
 
       return user;
-    });
+    }); // Push the new change
+
     dispatch({
       type: "UPDATE_CURRENT_USER",
       allUsers: newUserArray

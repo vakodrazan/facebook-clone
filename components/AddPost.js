@@ -8,6 +8,8 @@ function AddPost() {
     function submitPost(e) {
         e.preventDefault();
         const form = e.target;
+        // create a new object for the new post to store all the new value
+        // Crab it by name
         const newPost = {
             id: Date.now(),
             userId: currentUser,
@@ -18,6 +20,7 @@ function AddPost() {
             comments: []
         }
 
+        // Push the new object in the comment but keep the existing comments
         dispatch({ type: "ADD_NEW_POST", allFeed: [...allFeed, newPost]})
         form.reset();
     }

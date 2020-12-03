@@ -7,6 +7,7 @@ function AddComment({feed}) {
     const [comment, setComment] = useState("");
 
     function handleSubmitNewComment(feedId) {
+        // push the new value in a new object
         const addComment = {
             commentMessage: comment,
             commentDate: Date.now(),
