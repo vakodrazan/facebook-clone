@@ -15,7 +15,7 @@ function AddComment({feed}) {
         }
 
         const findUser = allFeed.map(item => {
-            if (item.id === feed.id) {
+            if (item.id === feedId) {
                 return {
                     ...item,
                     comments: [...item.comments, addComment]
@@ -35,7 +35,7 @@ function AddComment({feed}) {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
             />
-            <button onClick={() => handleSubmitNewComment(feed)} aria-label="submit your comment">Post</button>
+            <button onClick={() => handleSubmitNewComment(feed.id)} aria-label="submit your comment">Post</button>
         </div>
     )
 }

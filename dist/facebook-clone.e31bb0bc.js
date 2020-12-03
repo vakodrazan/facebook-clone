@@ -36033,7 +36033,7 @@ function AddComment({
       commentId: Date.now()
     };
     const findUser = allFeed.map(item => {
-      if (item.id === feed.id) {
+      if (item.id === feedId) {
         return { ...item,
           comments: [...item.comments, addComment]
         };
@@ -36054,7 +36054,7 @@ function AddComment({
     value: comment,
     onChange: e => setComment(e.target.value)
   }), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: () => handleSubmitNewComment(feed),
+    onClick: () => handleSubmitNewComment(feed.id),
     "aria-label": "submit your comment"
   }, "Post"));
 }
