@@ -41,6 +41,7 @@ function AddPost() {
                 <input 
                     type="url" 
                     name="addUrl"
+                    placeholder="Paste your image url here"
                 />
             </FieldsetStyle>
             <button 

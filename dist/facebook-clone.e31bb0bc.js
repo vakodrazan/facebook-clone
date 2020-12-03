@@ -35967,6 +35967,13 @@ const FormStyle = styled.form`
     display: grid;
     grid-template-columns: 200px;
     gap: 20px;
+
+    button {
+        width: 50%;
+        padding: 0;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
 `;
 exports.FormStyle = FormStyle;
 const FieldsetStyle = styled.fieldset`
@@ -36034,7 +36041,8 @@ function AddPost() {
     name: "addText"
   })), /*#__PURE__*/_react.default.createElement(_Styles.FieldsetStyle, null, /*#__PURE__*/_react.default.createElement("label", null, "Picture url: "), /*#__PURE__*/_react.default.createElement("input", {
     type: "url",
-    name: "addUrl"
+    name: "addUrl",
+    placeholder: "Paste your image url here"
   })), /*#__PURE__*/_react.default.createElement("button", {
     "aria-label": "Commit your post"
   }, "Post"));
