@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../pages/Context';
-import { FormStyle } from './Styles';
+import { FormStyle, FieldsetStyle } from './Styles';
 
 function AddPost() {
     const { state, dispatch } = useContext(Context);
@@ -28,21 +28,21 @@ function AddPost() {
 
     return (
         <FormStyle onSubmit={submitPost}>
-            <fieldset>
+            <FieldsetStyle>
                 <label>New post:</label>
                 <textarea 
                     rows="4" 
                     type="text" placeholder="Say what’s on your mind..."
                     name="addText"
                 ></textarea>
-            </fieldset>
-            <fieldset>
+            </FieldsetStyle>
+            <FieldsetStyle>
                 <label>Picture url: </label>
                 <input 
                     type="url" 
                     name="addUrl"
                 />
-            </fieldset>
+            </FieldsetStyle>
             <button 
                 aria-label="Commit your post"
             >Post</button>

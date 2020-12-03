@@ -35957,7 +35957,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.FormStyle = void 0;
+exports.FieldsetStyle = exports.FormStyle = void 0;
 
 const {
   default: styled
@@ -35966,9 +35966,15 @@ const {
 const FormStyle = styled.form`
     display: grid;
     grid-template-columns: 200px;
-    gap: 10px;
+    gap: 20px;
 `;
 exports.FormStyle = FormStyle;
+const FieldsetStyle = styled.fieldset`
+    display: grid;
+    grid-template-columns: 200px;
+    gap: 15px;
+`;
+exports.FieldsetStyle = FieldsetStyle;
 },{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/AddPost.js":[function(require,module,exports) {
 "use strict";
 
@@ -36021,12 +36027,12 @@ function AddPost() {
 
   return /*#__PURE__*/_react.default.createElement(_Styles.FormStyle, {
     onSubmit: submitPost
-  }, /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "New post:"), /*#__PURE__*/_react.default.createElement("textarea", {
+  }, /*#__PURE__*/_react.default.createElement(_Styles.FieldsetStyle, null, /*#__PURE__*/_react.default.createElement("label", null, "New post:"), /*#__PURE__*/_react.default.createElement("textarea", {
     rows: "4",
     type: "text",
     placeholder: "Say what\u2019s on your mind...",
     name: "addText"
-  })), /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("label", null, "Picture url: "), /*#__PURE__*/_react.default.createElement("input", {
+  })), /*#__PURE__*/_react.default.createElement(_Styles.FieldsetStyle, null, /*#__PURE__*/_react.default.createElement("label", null, "Picture url: "), /*#__PURE__*/_react.default.createElement("input", {
     type: "url",
     name: "addUrl"
   })), /*#__PURE__*/_react.default.createElement("button", {

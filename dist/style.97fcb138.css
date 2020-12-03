@@ -18,6 +18,10 @@ ul {
   height: 46px;
 }
 
+input {
+  width: 100%;
+}
+
 fieldset {
   border: none;
   padding: 0;
