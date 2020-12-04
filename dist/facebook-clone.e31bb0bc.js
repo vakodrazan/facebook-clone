@@ -35957,7 +35957,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AddCommentStyle = exports.MenuListStyle = exports.FieldsetStyle = exports.FormStyle = void 0;
+exports.LikedStyle = exports.AddCommentStyle = exports.MenuListStyle = exports.FieldsetStyle = exports.FormStyle = void 0;
 
 const {
   default: styled
@@ -36018,6 +36018,17 @@ const AddCommentStyle = styled.div`
     }
 `;
 exports.AddCommentStyle = AddCommentStyle;
+const LikedStyle = styled.div`
+    max-width: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+`;
+exports.LikedStyle = LikedStyle;
 },{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/AddPost.js":[function(require,module,exports) {
 "use strict";
 
@@ -36220,6 +36231,8 @@ var _AddComment = _interopRequireDefault(require("./AddComment"));
 
 var _CommentPost = _interopRequireDefault(require("./CommentPost"));
 
+var _Styles = require("./Styles");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -36311,9 +36324,10 @@ function FeedPost({
   }, postedUser.userName)), /*#__PURE__*/_react.default.createElement("span", null, postDate)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, feed.description), /*#__PURE__*/_react.default.createElement("img", {
     src: feed.photo,
     alt: " post"
-  }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement(_Styles.LikedStyle, null, /*#__PURE__*/_react.default.createElement("i", {
+    className: "ri-thumb-up-line",
     onClick: () => updateLike(feed.id)
-  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, feed.likes && feed.likes.length, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
+  }), /*#__PURE__*/_react.default.createElement("span", null, feed.likes && feed.likes.length, " likes"))), /*#__PURE__*/_react.default.createElement(_CommentPost.default, {
     feed: feed,
     HeaderUsername: HeaderUsername,
     Heading: Heading
@@ -36324,7 +36338,7 @@ function FeedPost({
 
 var _default = FeedPost;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../pages/Context":"pages/Context.js","./AddComment":"components/AddComment.js","./CommentPost":"components/CommentPost.js"}],"components/Feed.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../pages/Context":"pages/Context.js","./AddComment":"components/AddComment.js","./CommentPost":"components/CommentPost.js","./Styles":"components/Styles.js"}],"components/Feed.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

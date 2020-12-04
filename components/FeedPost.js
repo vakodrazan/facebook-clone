@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import styled from 'styled-components';
 import { Context } from '../pages/Context';
 import AddComment from './AddComment';
-import CommentPost from "./CommentPost";
+import CommentPost from './CommentPost';
+import { LikedStyle } from './Styles';
 
 const HeaderUsername = styled.div`
     display: flex;
@@ -79,10 +80,10 @@ function FeedPost({feed}) {
             <div>
                 <p>{feed.description}</p>
                 <img src={feed.photo} alt=" post" />
-                <div>
-                    <button onClick={() => updateLike(feed.id)}>Like</button>
+                <LikedStyle>
+                    <i className="ri-thumb-up-line" onClick={() => updateLike(feed.id)}></i>
                     <span>{feed.likes && feed.likes.length} likes</span>
-                </div>
+                </LikedStyle>
             </div>
 
             <CommentPost feed={feed} HeaderUsername={HeaderUsername} Heading={Heading} />

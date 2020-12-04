@@ -53,3 +53,13 @@ export const AddCommentStyle = styled.div`
         border: none;
     }
 `;
+export const LikedStyle = styled.div`
+    max-width: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+`;
