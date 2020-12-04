@@ -32,3 +32,24 @@ export const MenuListStyle = styled.ul`
         gap: 10px;
     }
 `;
+
+export const AddCommentStyle = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    input {
+        height: 20px;
+    }
+    button {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-right: 10px;
+        padding-left: 10px;
+        background-color: blue;
+        color: white;
+        border: none;
+    }
+`;

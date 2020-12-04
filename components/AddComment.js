@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Context } from '../pages/Context';
+import { AddCommentStyle } from './Styles';
 
 function AddComment({feed}) {
     const { state, dispatch } = useContext(Context);
@@ -34,7 +35,7 @@ function AddComment({feed}) {
     }
 
     return (
-        <div>
+        <AddCommentStyle>
             <input 
                 type="text" 
                 placeholder="Add a comment..." 
@@ -42,7 +43,7 @@ function AddComment({feed}) {
                 onChange={(e) => setComment(e.target.value)}
             />
             <button onClick={() => handleSubmitNewComment(feed.id)} aria-label="submit your comment">Post</button>
-        </div>
+        </AddCommentStyle>
     )
 }
 
