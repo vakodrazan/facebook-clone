@@ -35957,7 +35957,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.FieldsetStyle = exports.FormStyle = void 0;
+exports.MenuListStyle = exports.FieldsetStyle = exports.FormStyle = void 0;
 
 const {
   default: styled
@@ -35982,6 +35982,21 @@ const FieldsetStyle = styled.fieldset`
     gap: 15px;
 `;
 exports.FieldsetStyle = FieldsetStyle;
+const MenuListStyle = styled.ul`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .userName {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+`;
+exports.MenuListStyle = MenuListStyle;
 },{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/AddPost.js":[function(require,module,exports) {
 "use strict";
 
@@ -36345,51 +36360,13 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
 var _Context = require("../pages/Context");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Styles = require("./Styles");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-const HeaderStyle = _styledComponents.default.header`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    .heading {
-        font-weight: normal;
-        font-size: 18px;
-    }
-
-    .list {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 70%;
-        font-size: 16px;
-
-        li {
-            padding: 3px;
-        }
-
-        .userName {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            
-            span {
-                padding-right: 3px;
-            }
-        }
-    }
-`;
 
 function Header() {
   const {
@@ -36401,11 +36378,9 @@ function Header() {
   } = state; // Find the active user
 
   const currentUserObj = allUsers.find(user => user.userId === currentUser);
-  return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", {
+  return /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", {
     className: "heading"
-  }, "OnjaBook"), /*#__PURE__*/_react.default.createElement("ul", {
-    className: "list"
-  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "OnjaBook"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement(_Styles.MenuListStyle, null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, "Feed")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/addPost"
@@ -36416,12 +36391,12 @@ function Header() {
     className: "profile",
     src: currentUserObj.userProfile,
     alt: currentUserObj.userName
-  })))));
+  }))))));
 }
 
 var _default = Header;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../pages/Context":"pages/Context.js"}],"components/Options.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../pages/Context":"pages/Context.js","./Styles":"components/Styles.js"}],"components/Options.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36580,7 +36555,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50436" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57110" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -17,3 +17,18 @@ export const FieldsetStyle = styled.fieldset`
     grid-template-columns: 200px;
     gap: 15px;
 `;
+
+export const MenuListStyle = styled.ul`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .userName {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+`;
